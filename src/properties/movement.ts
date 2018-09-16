@@ -3,7 +3,7 @@ import { RUN, FLY, SWIM } from '../constants';
 
 export namespace Movements {
 	/**
-	 * abstract movement
+	 * abstract class for movements, extends from Property
 	 */
 
 	export abstract class Movement extends Property {
@@ -17,7 +17,7 @@ export namespace Movements {
 		}
 		set setSpeed(_speed: number) {
 			this.speed = _speed;
-		}	
+		}
 		public output(): string {
 			return 'i can ' + this.label + ' with speed: ' + this.speed;
 		};
