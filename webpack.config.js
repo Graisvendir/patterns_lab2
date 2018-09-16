@@ -1,11 +1,12 @@
 var path = require('path');
 
 module.exports = {
-    entry: './src/main.ts',
+    entry: './src/test.ts',
+    mode: 'development',
     module: {
         rules: [
             {
-                test: /\.tsx?$/,
+                test: /\.ts?$/,
                 use: 'ts-loader',
                 exclude: /node_modules/
             }
@@ -17,10 +18,11 @@ module.exports = {
     output: {
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'build')
-    }
-    /*devServer: {
+    },
+    devServer: {
         contentBase: path.join(__dirname, ''),
-        compress: true,
-        port: 9000  
-    }*/
+        port: 9000,
+        hot: true,
+        open: true  
+    }
 }
