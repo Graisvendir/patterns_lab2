@@ -19,7 +19,11 @@ export namespace Movements {
 			this.speed = _speed;
 		}
 		public output(): string {
-			return 'i can ' + this.label + ' with speed: ' + this.speed;
+			if (this.speed === 0) {
+				return 'i cant ' + this.label; 
+			} else {
+				return 'i can ' + this.label + ' with speed: ' + this.speed;
+			}
 		};
 	}
 
@@ -27,19 +31,19 @@ export namespace Movements {
 	 * move classes
 	 */
 	export class canRun extends Movement {
-		constructor(_speed: number) {
+		constructor(_speed: number = 0) {
 			super(RUN, _speed);
 		}
 	}
 
 	export class canFly extends Movement {
-		constructor(_speed: number) {
+		constructor(_speed: number = 0) {
 			super(FLY, _speed);
 		}
 	}
 
 	export class canSwim extends Movement {
-		constructor(_speed: number) {
+		constructor(_speed: number = 0) {
 			super(SWIM, _speed);
 		}
 	}

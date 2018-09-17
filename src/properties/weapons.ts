@@ -17,27 +17,31 @@ export namespace Weapons {
 			this.power = _power;
 		}	
 		public output(): string {
-			return 'i can ' + this.label + ' with power: ' + this.power;
+			if (this.power === 0) {
+				return 'i not have ' + this.label; 
+			} else {
+				return 'i have ' + this.label + ' with power: ' + this.power;
+			}
 		};
 	}
 
 	// когти
 	export class Claws extends Weapon {
-		constructor(_power: number) {
+		constructor(_power: number = 0) {
 			super(CLAWS, _power);
 		}
 	}
 
 	// клыки
 	export class Fangs extends Weapon {
-		constructor(_power: number) {
+		constructor(_power: number = 0) {
 			super(FANGS, _power);
 		}
 	}
 
 	// плеваться ядом
 	export class Spit extends Weapon {
-		constructor(_power: number) {
+		constructor(_power: number = 0) {
 			super(SPIT, _power);
 		}
 	}

@@ -1,7 +1,6 @@
 import { Movements } from './properties/movement';
 import { Weapons } from './properties/weapons';
 import { Defense } from './properties/defense';
-import { Property } from "./properties/property";
 import * as Constants from './constants';
 
 export function addMessage(_message: string): void {
@@ -9,16 +8,16 @@ export function addMessage(_message: string): void {
 }
 
 export class Monster {
-	private movements	: Array<Movements.Movement>;
-	private weapons		: Array<Weapons.Weapon>;
+	private movements	: Map<string, Movements.Movement>;
+	private weapons		: Map<string, Weapons.Weapon>;
 	private armor		: Defense;
 	private name		: string;
 	private state		: string;
 
 	constructor(
 		_name: string = '',
-		_movements: Array<Movements.Movement> = [],
-		_weapons: Array<Weapons.Weapon> = [],
+		_movements = Constants.DEFAULT_MOVEMENTS,
+		_weapons = Constants.DEFAULT_WEAPONS,
 		_defense: Defense = new Defense(Constants.ARMOR, 10)
 	) {
 		this.name = _name;
@@ -31,82 +30,49 @@ export class Monster {
      *  show all properties
      */
     showProperties() {
-		console.log(
-			this.name,
-			this.movements,
-			this.weapons,
-			this.armor,
-			this.state
-		);
-	}
-
-    setMovement(_index: number, _speed: number) {
-        this.movements[_index].setSpeed = _speed;
-    }
-    setWeapon(_index: number, _power: number) {
-        this.weapons[_index].setPower = _power;
-    }
-
-    /**
-    *   search property with @prop name
-    *   @param { Array<Property> } _properties array of properties
-    *   @param { string } prop searched property
-    *   @returns { boolean } true, if array have this property
-    */
-	private checkProperty(_properties: Array<Property>, prop: string) {
-		for (let i = 0; i < _properties.length; i++){
-			if (prop === _properties[i].getLabel)
-				return true;
+		console.log(this.name);
+		for (let i = 0; i < this.movements.size; i++) {
+			this.movements[i].output();
 		}
-		return false;
+		for (let i = 0; i < this.weapons.size; i++) {
+			this.weapons[i].output();
+		}
+		this.armor.output();
 	}
 
-	public updateProperty(
-		_properties: Array<Constants.PROPERTY>,
-		_movement: Constants.PROPERTY
-	) {
-		for (let i = 0; i < _properties.length; i++){
-			if (_movement.getLabel === _properties[i].getLabel) {
-                console.log(typeof(_movement));
-                /*switch (typeof(_movement)) {
-                    case Constants.Movement:
-                        this.setMovement(i, _movement.getSpeed);
-                }*/
-			}
+	private upgradeExistingMovement(_movement: Movements.Movement) {
+		let value = this.movements.get(_movement.getLabel).getSpeed + _movement.getSpeed;
+		_movement.setSpeed = value;
+		this.movements.set(_movement.getLabel, _movement);
+	}
+
+	updateMovements(_movement: Movements.Movement) {
+		if (this.movements.get(_movement.getLabel)) {
+			this.movements.set(_movement.getLabel, _movement);
+		} else {
+			if (_movement)
+				this.upgradeExistingMovement(_movement);
 		}
 	}
 
-	private addMovement(_movement: Movements.Movement) {
-		this.movements.push(_movement);
-		addMessage(
-			this.name +
-			' have new movement: ' +
-			_movement.getLabel
-		);
+	private upgradeExistingWeapon(_weapon: Weapons.Weapon) {
+		let value = this.weapons.get(_weapon.getLabel).getPower + _weapon.getPower;
+		_weapon.setPower = value;
+		this.weapons.set(_weapon.getLabel, _weapon);
 	}
 
-	public addMovementProxy(_movement: Movements.Movement) {
-		if (this.checkProperty(this.movements, _movement.getLabel)) {
-
-        }
-
+	updateWeapons(_weapon: Weapons.Weapon) {
+		if (this.weapons.get(_weapon.getLabel)) {
+			this.weapons.set(_weapon.getLabel, _weapon);
+		} else {
+			if (_weapon)
+				this.upgradeExistingWeapon(_weapon);
+		}
 	}
 
-	addWeapon(_weapon: Weapons.Weapon) {
-		this.weapons.push(_weapon);
-		addMessage(
-			this.name +
-			' have new movement: ' +
-			_weapon.getLabel
-		);
+	private upgradeExistingArmor(_armor: Defense) {
+		let value = this.armor.getArmor + _armor.getArmor;
+		this.armor.setArmor = value;
 	}
 
-	addArmor(_weapon: Weapons.Weapon) {
-		this.weapons.push(_weapon);
-		addMessage(
-			this.name +
-			' have new movement: ' +
-			_weapon.getLabel
-		);
-	}
 }

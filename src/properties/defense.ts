@@ -3,7 +3,7 @@ import { Property } from "./property";
 
 export class Defense extends Property {
     protected armor: number;
-    constructor(_label: string, _armor: number) {
+    constructor(_label: string, _armor: number = 0) {
         super(_label);
         this.armor = _armor;
     }
@@ -14,6 +14,10 @@ export class Defense extends Property {
         this.armor = _armor;
     }
     output(): string {
-        return 'i can ' + this.label + ' with speed: ' + this.armor;
+        if (this.armor === 0) {
+            return 'i not have ' + this.label; 
+        } else {
+            return 'i have ' + this.label + ' with amout: ' + this.armor;
+        }
     }
 }
