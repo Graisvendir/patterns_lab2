@@ -1,11 +1,23 @@
-import * as Main from "./main";
+import Monster from "./creatures/monster";
 import { Movements } from './properties/movement';
 import { Weapons } from './properties/weapons';
+import * as Battle from './events/battle';
 
-let monster1 = new Main.Monster('Jack');
-let monster2 = new Main.Monster('Vasya');
-monster1.updateMovements(new Movements.canRun(10));
-monster1.updateMovements(new Movements.canFly(100));
-monster2.updateWeapons(new Weapons.Claws(20));
-monster1.showProperties();
-monster2.showProperties();
+let Jack = new Monster('Jack');
+let Vasya = new Monster('Vasya');
+
+Jack.updateMovements(new Movements.canRun(10));
+Jack.updateMovements(new Movements.canFly(10));
+Jack.updateMovements(new Movements.canSwim(10));
+Jack.updateWeapons(new Weapons.Fangs(15));
+Vasya.updateWeapons(new Weapons.Claws(20));
+
+Jack.showProperties();
+Vasya.showProperties();
+
+
+Battle.attack(Jack, Vasya);
+
+Jack.showProperties();
+Vasya.showProperties();
+

@@ -7,22 +7,15 @@ export namespace Movements {
 	 */
 
 	export abstract class Movement extends Property {
-		private speed: number = 0;
 		constructor(_label: string, _speed: number) {
-			super(_label);
-			this.speed = _speed;
+			super(_label, _speed);
 		}
-		get getSpeed(): number {
-			return this.speed;
-		}
-		set setSpeed(_speed: number) {
-			this.speed = _speed;
-		}
+		
 		public output(): string {
-			if (this.speed === 0) {
-				return 'i cant ' + this.label; 
+			if (this.value === 0) {
+				return '	i cant ' + this.label;
 			} else {
-				return 'i can ' + this.label + ' with speed: ' + this.speed;
+				return '	i can ' + this.label + ' with speed: ' + this.value;
 			}
 		};
 	}
