@@ -1,7 +1,8 @@
-import Monster from "./creatures/monster";
+import Monster from './creatures/monster';
 import { Movements } from './properties/movement';
 import { Weapons } from './properties/weapons';
 import * as Battle from './events/battle';
+import { addCreature } from './interfaces/interface';
 
 let Jack = new Monster('Jack');
 let Vasya = new Monster('Vasya');
@@ -21,3 +22,4 @@ Battle.attack(Jack, Vasya);
 Jack.showProperties();
 Vasya.showProperties();
 
+Battle.attack(Jack, Vasya);

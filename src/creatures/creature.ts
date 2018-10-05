@@ -3,13 +3,14 @@ import { Weapons } from '../properties/weapons';
 import { Defense } from '../properties/defense';
 import * as Constants from '../constants';
 import { Property } from '../properties/property';
+import * as Interface from '../interfaces/interface';
 
 abstract class Creature {
     protected movements					: Map<string, Movements.Movement>;
 	protected weapons					: Map<string, Weapons.Weapon>;
 	protected armor						: Defense;
 	protected name						: string;
-	protected state						: string;
+	protected Status					: string;
 	protected countOfNotNullProperties	: number = 1;
 
 	constructor(
@@ -61,6 +62,10 @@ abstract class Creature {
 		return this.armor;
 	}
 
+	get getStatus(): string {
+		return this.Status;
+	}
+
 	get getCountOfNotNullProps() : number {
 		return this.countOfNotNullProperties;
 	}
@@ -92,8 +97,8 @@ abstract class Creature {
 		this.showProp(this.armor);
     }
     
-    showState() {
-		Constants.addMessage(this.name + ' is ' + this.state);
+    showStatus() {
+		Constants.addMessage(this.name + ' is ' + this.Status);
     }
 	
 	//-------------Summ of properties---------------//
@@ -119,25 +124,25 @@ abstract class Creature {
         return this.armor.getValue;
     }
 
-    //---------------Change State--------------------//
+    //---------------Change Status--------------------//
     iAlive() {
-		this.state = Constants.ALIVE;
-		this.showState();
+		this.Status = Constants.ALIVE;
+		this.showStatus();
 	}
 
 	iDead() {
-		this.state = Constants.DEAD;
-		this.showState();
+		this.Status = Constants.DEAD;
+		this.showStatus();
 	}
 
 	iFeeding() {
-		this.state = Constants.FEEDING;
-		this.showState();
+		this.Status = Constants.FEEDING;
+		this.showStatus();
 	}
 
 	iEscape() {
-		this.state = Constants.ESCAPE;
-		this.showState();
+		this.Status = Constants.ESCAPE;
+		this.showStatus();
     }
     
     //------------------Upgrade Properties--------------------//
@@ -185,40 +190,28 @@ abstract class Creature {
 	 * @param _cycle { {number, number} } have random number and iterator
 	 * @param _mapProps { Map<string, Property> } have map of creature props
 	 */
-	private searchRandomPropertyFrom(_cycle, _mapProps): boolean {
-		for (let key of _mapProps.values()) {
-			if (!key)
-				continue;
-			if (key.getValue === 0) {
-				_cycle.iterator++;
-				return false;
-			}
-			if (_cycle.iterator === _cycle.random) {
-				switch (key.getLabel) {
-					case Constants.RUN:
-						this.updateMovements(key);
-						break;
-					case Constants.FLY:
-                        this.updateMovements(key);
-                        break;
-                    case Constants.SWIM:
-                        this.updateMovements(key);
-                        break;
-                    case Constants.CLAWS:
-                        this.updateWeapons(key);
-						break;
-					case Constants.FANGS:
-						this.updateWeapons(key);
-						break;
-					case Constants.SPIT:
-						this.updateWeapons(key);
-						break;
-				}
-                console.log('	' + this.name + ' take property: ' + key.getLabel);
-				return true;
-			}
+	private updateSomeProperty(_property) {
+		switch (_property.getLabel) {
+			case Constants.RUN:
+				this.updateMovements(_property);
+				break;
+			case Constants.FLY:
+				this.updateMovements(_property);
+				break;
+			case Constants.SWIM:
+				this.updateMovements(_property);
+				break;
+			case Constants.CLAWS:
+				this.updateWeapons(_property);
+				break;
+			case Constants.FANGS:
+				this.updateWeapons(_property);
+				break;
+			case Constants.SPIT:
+				this.updateWeapons(_property);
+				break;
 		}
-		return false;
+		
 	}
 	
 	/**
@@ -226,19 +219,14 @@ abstract class Creature {
 	 * @param _creature { Creature } 
 	 */
 	takePropertyFrom(_creature: Creature): boolean {
-		let cycle = { 
-			random: 0, 
-			iterator: 0
-		};
-		let date = new Date().getMilliseconds();
+		let date = Math.random();
 		let count = _creature.getCountOfNotNullProps;
-		cycle.random = date % count;
-		if (this.searchRandomPropertyFrom(cycle, _creature.getMovements))
-			return true;
-		if (this.searchRandomPropertyFrom(cycle, _creature.getWeapons))
-			return true;
-		this.updateArmor(_creature.getArmor);
-		console.log('	' + this.name + ' take property: armor');
+		
+		let random = Math.round((date * 1000) % count);
+		console.log(random);
+		let updProp = Interface.getPropertyFromCreatureByIndex(random, _creature);
+		this.updateSomeProperty(updProp);
+		console.log('	' + this.name + ' take property: ' +  updProp.getLabel);
 		return true;
 	}
 }

@@ -8,14 +8,14 @@ function canAttackerClaimTarget(_attacker: Creature, _target: Creature): boolean
 }
 
 function attackerKillTarget(_attacker: Creature, _target: Creature) {
-    Constants.addMessage('    ' + _attacker.getName + ' win ');
+    console.log('    ' + _attacker.getName + ' win ');
     _attacker.iFeeding();
     _target.iDead();
     _attacker.takePropertyFrom(_target);
 }
 
 function targetKillAttacker(_attacker: Creature, _target: Creature) {
-    Constants.addMessage('    ' + _target.getName + ' win ');
+    console.log('    ' + _target.getName + ' win ');
     _attacker.iDead();
     _target.iFeeding();
     _target.takePropertyFrom(_attacker)
@@ -42,7 +42,7 @@ function battle(_attacker: Creature, _target: Creature): boolean {
         targetKillAttacker(_attacker, _target);
         return false;
     }
-    console.log('   No one can pierce armor. They reun away!');
+    console.log('   No one can pierce armor. They run away!');
     _attacker.iEscape();
     return false;
 }
@@ -54,10 +54,15 @@ function battle(_attacker: Creature, _target: Creature): boolean {
  */
 export function attack(_attacker: Creature, _target: Creature) {
     if (canAttackerClaimTarget(_attacker, _target)) {
-        Constants.addMessage('START BATTLE: ' + _attacker.getName + ' VS ' + _target.getName);
-        battle(_attacker, _target);
+        if (_target.getStatus !== Constants.DEAD) {
+            console.log('START BATTLE: ' + _attacker.getName + ' VS ' + _target.getName);
+            battle(_attacker, _target);
+        } else {
+            console.log(_attacker.getName + ' cant attack ' + _target.getName);
+            console.log(_target.getName + ' is dead!');
+        }
     } else {
         _target.iEscape();
-        Constants.addMessage(_target.getName + ' excape from ' + _attacker.getName);
+        console.log(_target.getName + ' excape from ' + _attacker.getName);
     }
 }
