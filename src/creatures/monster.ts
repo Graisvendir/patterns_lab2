@@ -5,7 +5,7 @@ import * as Constants from '../constants';
 class Monster extends Creature {
 	
 	constructor(
-		_name: string = '',
+		_name: string,
 		_movements?,
 		_weapons?,
 		_defense: Defense = new Defense(Constants.ARMOR, 10)
