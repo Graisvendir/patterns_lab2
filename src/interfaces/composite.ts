@@ -1,4 +1,3 @@
-import Monster from "../creatures/monster";
 import Creature from "../creatures/creature";
 
 export class Composite {
@@ -12,14 +11,22 @@ export class Composite {
         }
     }
 
-    show() {
+    get getName() : string {
+        return this.name;
+    }
+
+    get getCreatures() : Creature[] {
+        return this.creatures;
+    }
+
+    public show() {
         console.log(this.name + ':');
         for (let i = 0; i < this.creatures.length; i++) {
-            console.log('   ' + this.creatures[i].getName);
+            console.log('   ' + this.creatures[i].getName + '\n');
         }
     }
 
-    add(_creature: Creature) {
+    public add(_creature: Creature) {
         this.creatures.push(_creature);
     }
 }

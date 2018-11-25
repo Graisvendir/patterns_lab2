@@ -1,9 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { ListOfCreatures } from './ListOfCreatures.jsx';
+import { TableOfCreatures } from './TableOfCreatures.jsx';
 import {Composite} from "../interfaces/composite";
-import Creature from "../creatures/creature";
 import Monster from "../creatures/monster";
 
 export class App extends React.Component {
@@ -13,22 +12,11 @@ export class App extends React.Component {
         this.state = {
         	creatures: new Composite("Creatures", [])
         };
+        this.addCreature = this.addCreature.bind(this);
     }
 
-    addCell(
-        _cell,
-        _place,
-        _option
-    ) {
-        if (_option)
-            _place.innerHTML += '<td>' + _cell + ' : ' + _option + '</td>';
-        else
-            _place.innerHTML += '<td>' + _cell + '</td>';
-    }
-
-
-    addCreature(_creature) {
-		let creatures = this.state.creatures.assign();
+    addCreature() {
+		let creatures = Object.assign({}, this.state.creatures);
 		let inputName = document.getElementById('newCreatureName').value;
         creatures.add(new Monster(inputName));
         this.setState({creatures: creatures});
@@ -49,7 +37,7 @@ export class App extends React.Component {
 
 
 				<div className="row" id="listOfCreatures">
-					<ListOfCreatures state={this.state} />
+					<TableOfCreatures state={this.state} />
 				</div>
 			</div>
 		);
