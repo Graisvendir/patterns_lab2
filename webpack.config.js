@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: {
-        App: './src/react/App.jsx',
+        App: './src/react/App.tsx',
         test: './src/test.ts',
         interface: './src/interfaces/interface',
         monster: './src/creatures/monster'
@@ -12,6 +12,7 @@ module.exports = {
         filename: '[name].bundle.js',
         path: path.resolve(__dirname, 'build')
     },
+    devtool: "source-map",
     plugins: [
         new HtmlWebpackPlugin({
             title: 'Creatures',
@@ -28,9 +29,9 @@ module.exports = {
                 exclude: /node_modules/
             },
             {
-                test: [/\.js?$/, /\.jsx?$/],
-                use: 'babel-loader',
-                exclude: /node_modules/
+                enforce: "pre",
+                test: /\.js$/,
+                loader: "source-map-loader"
             }
         ]
     },

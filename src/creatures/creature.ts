@@ -190,7 +190,7 @@ abstract class Creature {
 	 * @param _cycle { {number, number} } have random number and iterator
 	 * @param _mapProps { Map<string, Property> } have map of creature props
 	 */
-	private updateSomeProperty(_property) {
+	private updateSomeProperty(_property: Property) {
 		switch (_property.getLabel) {
 			case Constants.RUN:
 				this.updateMovements(_property);

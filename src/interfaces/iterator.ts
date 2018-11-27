@@ -2,10 +2,10 @@ import { Property } from "../properties/property";
 import Creature from "../creatures/creature";
 
 abstract class abstractIterator {
-    abstract First();
-    abstract End();
-	abstract Next();
-	abstract Current();
+    abstract First(): Property;
+    abstract End(): Property;
+	abstract Next(): Property;
+	abstract Current(): Property;
 }
 
 /**
@@ -31,29 +31,29 @@ export class Iterator extends abstractIterator {
         this.array.push(_creature.getArmor);
     }
 
-	get getIndex() {
+	get getIndex(): number {
 		return this.current;
 	}
 
-    First() {
+    First(): Property {
         return this.array[0];
     }
 
-    End() {
+    End(): Property {
 		if (this.array.length) {
 			return this.array[this.array.length - 1];     
 		}
 		return null;
     }
 
-	Next() {
+	Next(): Property {
 		if (this.current < this.array.length - 1) {
 			this.current++;
 		}
 		return this.array[this.current]; 
 	}
 
-	Current() {
+	Current(): Property {
 		return this.array[this.current];
 	}
 }
