@@ -4,7 +4,6 @@ import { Movements } from "../properties/movement";
 import { Weapons } from "../properties/weapons";
 import { Defense } from "../properties/defense";
 import {Property} from "../properties/property";
-import {Composite} from "../interfaces/composite";
 
 function convertToList(_map: Map<string, Property>) {
     let list: any;

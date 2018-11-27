@@ -3,6 +3,7 @@ import { Movements } from '../properties/movement';
 import { Weapons } from '../properties/weapons';
 import Creature from '../creatures/creature';
 import * as Constants from '../constants';
+import { generateRandomProperty } from '../properties/randomPropertyGenerator';
 
 class Monster extends Creature {
 	
@@ -10,7 +11,7 @@ class Monster extends Creature {
 		_name: string,
 		_movements?: Map<string, Movements.Movement>,
 		_weapons?: Map<string, Weapons.Weapon>,
-		_defense: Defense = new Defense(Constants.ARMOR, 10)
+		_defense: Defense = new Defense(10)
 	){
 		super(
 			_name,
@@ -18,6 +19,7 @@ class Monster extends Creature {
 			_weapons,
 			_defense
 		);
+		//this.updateSomeProperty(generateRandomProperty());
 	}	
 }
 

@@ -12,7 +12,6 @@ export class TableOfCreatures extends React.Component<{creatures: Composite}, {c
     }
 
     renderList() {
-        console.log('start rerender list');
         let listCreatures : Creature[] = this.state.creatures.getCreatures;
         let rendList = listCreatures.map(
             (key, index) => {
@@ -42,10 +41,7 @@ export class TableOfCreatures extends React.Component<{creatures: Composite}, {c
                     </tr>
                 </thead>
                 <tbody id="tbody">
-
-                        {this.renderList()}
-
-
+                    {this.renderList()}
                 </tbody>
             </table>
         );

@@ -1,9 +1,10 @@
 import { Property } from "./property";
+import { ARMOR } from "../constants";
 
 
 export class Defense extends Property {
-    constructor(_label: string, _armor: number = 0) {
-        super(_label, _armor);
+    constructor(_armor: number = 0) {
+        super(ARMOR, _armor);
     }
     output(): string {
         if (this.value === 0) {

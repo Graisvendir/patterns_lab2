@@ -4,6 +4,7 @@ import { Defense } from '../properties/defense';
 import * as Constants from '../constants';
 import { Property } from '../properties/property';
 import * as Interface from '../interfaces/interface';
+import { generateRandomProperty } from "../properties/randomPropertyGenerator";
 
 abstract class Creature {
     protected movements					: Map<string, Movements.Movement>;
@@ -17,7 +18,7 @@ abstract class Creature {
 		_name: string,
 		_movements?: Map<string, Movements.Movement>,
 		_weapons?: Map<string, Weapons.Weapon>,
-		_armor: Defense = new Defense(Constants.ARMOR, 10)
+		_armor: Defense = new Defense(10)
 	) {
 		this.name = _name;
 		if (_movements === undefined) {
@@ -190,7 +191,7 @@ abstract class Creature {
 	 * @param _cycle { {number, number} } have random number and iterator
 	 * @param _mapProps { Map<string, Property> } have map of creature props
 	 */
-	private updateSomeProperty(_property: Property) {
+	updateSomeProperty(_property: Property) {
 		switch (_property.getLabel) {
 			case Constants.RUN:
 				this.updateMovements(_property);
@@ -209,6 +210,9 @@ abstract class Creature {
 				break;
 			case Constants.SPIT:
 				this.updateWeapons(_property);
+				break;
+			case Constants.ARMOR:
+				this.updateArmor(_property);
 				break;
 		}
 		
@@ -229,6 +233,8 @@ abstract class Creature {
 		console.log('	' + this.name + ' take property: ' +  updProp.getLabel);
 		return true;
 	}
+
+
 }
 
 export default Creature;

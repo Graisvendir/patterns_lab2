@@ -20,10 +20,6 @@ export class App extends React.Component<{}, {creatures: Composite}> {
         this.setState({creatures: creatures});
     }
 
-    componentDidUpdate(prevProps: Readonly<{}>, prevState: Readonly<{ creatures: Composite }>, snapshot?: any): void {
-		console.log('update!');
-    }
-
     render() {
 		return (
 			<div className="container">
