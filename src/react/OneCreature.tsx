@@ -3,14 +3,22 @@ import Creature from "../creatures/creature";
 import { Movements } from "../properties/movement";
 import { Weapons } from "../properties/weapons";
 import { Defense } from "../properties/defense";
-import {Property} from "../properties/property";
+import { Property } from "../properties/property";
 
 function convertToList(_map: Map<string, Property>) {
-    let list: any;
-    for (let key of _map.values()) {
-        if (key)
-            list += <li> {key.getLabel + ': ' + key.getValue} </li>;
-    }
+    let arrayOfValues: Property[] = [];
+    _map.forEach(element => {
+        arrayOfValues.push(element);    
+    });
+    
+    let list = arrayOfValues.map(
+        (key) => {
+            if (key)
+                return <li> {key.getLabel} value: {key.getValue} </li>;
+            else
+                return ;
+        }
+    );
     return list;
 }
 

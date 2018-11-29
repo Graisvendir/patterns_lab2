@@ -3,8 +3,8 @@ import { Movements } from "./movement";
 import { Weapons } from "./weapons";
 
 export function generateRandomProperty() {
-    let randomProp = Math.random();
-    let randomValue = Math.random() % 100;
+    let randomProp = Math.round(Math.random() * 10);
+    let randomValue = Math.round(Math.random() * 100) ;
     randomProp %= 6;
     switch (randomProp) {
         case 0:

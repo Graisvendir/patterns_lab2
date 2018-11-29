@@ -2,7 +2,6 @@ import { Defense } from '../properties/defense';
 import { Movements } from '../properties/movement';
 import { Weapons } from '../properties/weapons';
 import Creature from '../creatures/creature';
-import * as Constants from '../constants';
 import { generateRandomProperty } from '../properties/randomPropertyGenerator';
 
 class Monster extends Creature {
@@ -19,7 +18,7 @@ class Monster extends Creature {
 			_weapons,
 			_defense
 		);
-		//this.updateSomeProperty(generateRandomProperty());
+		this.updateSomeProperty(generateRandomProperty());
 	}	
 }
 
