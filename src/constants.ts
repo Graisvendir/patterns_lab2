@@ -18,10 +18,6 @@ export const SWIM = 'swim';
 
 export const ARMOR = 'armor';
 
-export function addMessage(_message: string): void {
-	console.log(_message);
-}
-
 export function createDefaultMovements() : Map<string, Movements.Movement> {
 	let newMovements = new Map<string, Movements.Movement>();
 	newMovements.set(RUN, null);

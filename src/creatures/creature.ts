@@ -4,7 +4,6 @@ import { Defense } from '../properties/defense';
 import * as Constants from '../constants';
 import { Property } from '../properties/property';
 import * as Interface from '../interfaces/interface';
-import { generateRandomProperty } from "../properties/randomPropertyGenerator";
 
 abstract class Creature {
     protected movements					: Map<string, Movements.Movement>;
@@ -71,11 +70,17 @@ abstract class Creature {
 		return this.countOfNotNullProperties;
 	}
 	//---------------------------Setters-------------------------------//
-
+	// need for construct default creature
+	/**
+	 * create movements of creature then it's construct
+	 */
 	setDefaultMovements() { 
 		this.movements = Constants.createDefaultMovements();
 	}
 
+	/**
+	 * create weapons of creature then it's construct
+	 */
 	setDefaultWeapons() { 
 		this.weapons = Constants.createDefaultWeapons();
 	}
@@ -88,7 +93,7 @@ abstract class Creature {
 	}
 	
 	public showProperties() {
-		Constants.addMessage(this.name + ' properties:');
+		console.log(this.name + ' properties:');
 		for (let key of this.movements.values()) {
 			this.showProp(key);
 		}
@@ -99,10 +104,11 @@ abstract class Creature {
     }
     
     showStatus() {
-		Constants.addMessage(this.name + ' is ' + this.Status);
+		console.log(this.name + ' is ' + this.Status);
     }
 	
 	//-------------Summ of properties---------------//
+	// need for battle
 	complexWeapon(): number {
 		let attack = 0;
 		for (let key of this.weapons.values()) {

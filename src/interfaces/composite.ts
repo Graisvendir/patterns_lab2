@@ -29,4 +29,12 @@ export class Composite {
     public add(_creature: Creature) {
         this.creatures.push(_creature);
     }
+
+    public del(_creature: Creature) {
+        this.creatures = this.creatures.filter(
+            (_elem) => {
+                return _elem != _creature;
+            }
+        );
+    }
 }

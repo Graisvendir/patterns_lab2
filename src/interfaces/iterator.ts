@@ -31,7 +31,7 @@ export class Iterator extends abstractIterator {
         this.array.push(_creature.getArmor);
     }
 
-	get getIndex(): number {
+	get getCurrent(): number {
 		return this.current;
 	}
 
