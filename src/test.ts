@@ -3,7 +3,7 @@ import { Movements } from './properties/movement';
 import { Weapons } from './properties/weapons';
 import * as Battle from './events/battle';
 
-let Jack = new Monster('Jack');
+/*let Jack = new Monster('Jack');
 let Vasya = new Monster('Vasya');
 
 Jack.updateMovements(new Movements.canRun(10));
@@ -21,4 +21,4 @@ Battle.attack(Jack, Vasya);
 Jack.showProperties();
 Vasya.showProperties();
 
-Battle.attack(Jack, Vasya);
+Battle.attack(Jack, Vasya);*/
