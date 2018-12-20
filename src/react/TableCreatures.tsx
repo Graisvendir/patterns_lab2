@@ -5,6 +5,11 @@ import { Movements } from "../properties/movement";
 import { Property } from "../properties/property";
 import { Weapons } from "../properties/weapons";
 import { Composite } from "../interfaces/composite";
+import Table from "@material-ui/core/Table/Table";
+import TableHead from "@material-ui/core/TableHead/TableHead";
+import TableRow from "@material-ui/core/TableRow/TableRow";
+import TableCell from "@material-ui/core/TableCell/TableCell";
+import TableBody from "@material-ui/core/TableBody/TableBody";
 
 function convertToList(_map: Map<string, Property>) {
     let arrayOfValues: Property[] = [];
@@ -41,29 +46,29 @@ export class TableCreatures extends React.Component<{creaturesComposite: Composi
         let listCreatures : Creature[] = this.state.creaturesComposite.getCreatures;
         let rendList = listCreatures.map(
             (key, index) => {
-                return this.renderOneCreature(key);
+                return this.renderOneCreature(key, index);
             }
         );
         return rendList;
     }
     
-    renderOneCreature(_creature: Creature) {
+    renderOneCreature(_creature: Creature, _index: number) {
         let name : string                           = _creature.getName;
         let mov  : Map<string, Movements.Movement>  = _creature.getMovements;
         let weap : Map<string, Weapons.Weapon>      = _creature.getWeapons;
         let arm  : Defense                          = _creature.getArmor;
         return (
-            <tr>
-                <td>
+            <TableRow key={_index}>
+                <TableCell>
                     {name}
-                </td>
-                <td>
+                </TableCell>
+                <TableCell>
                     <ul>{convertToList(mov)}</ul>
-                </td>
-                <td>
+                </TableCell>
+                <TableCell>
                     <ul>{convertToList(weap)}</ul>
-                </td>
-                <td>
+                </TableCell>
+                <TableCell>
                     {arm.getLabel + ': ' + arm.getValue}
                     <button 
                         type="button" 
@@ -73,36 +78,51 @@ export class TableCreatures extends React.Component<{creaturesComposite: Composi
                     >
                         <span aria-hidden="true">&times;</span>
                     </button>
-                </td>
-            </tr>
+                    <div className="dropdown">
+                        <button 
+                            className="btn btn-secondary dropdown-toggle" 
+                            type="button" id="dropdownMenuButton" 
+                            data-toggle="dropdown" 
+                            aria-haspopup="true" 
+                            aria-expanded="false"
+                        >
+                            <span className="io io-ellipses" title="ellipses" aria-hidden="true" />
+                        </button>
+                        <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a className="dropdown-item" href="#">Action</a>
+                            <a className="dropdown-item" href="#">Another action</a>
+                            <a className="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </div>
+                </TableCell>
+            </TableRow>
         );
     }
 
     render() {
         return (
-            <div className="row" id="listOfCreatures">
-                <table className="table table-bordered">
-                    <thead className="thead-dark">
-                        <tr>
-                            <td>
-                                Name
-                            </td>
-                            <td>
-                                Movement
-                            </td>
-                            <td>
-                                Weapon
-                            </td>
-                            <td>
-                                Armor
-                            </td>
-                        </tr>
-                    </thead>
-                    <tbody id="tbody">
-                        {this.renderList()}
-                    </tbody>
-                </table>
-            </div>
+
+            <Table className="table table-bordered">
+                <TableHead>
+                    <TableRow>
+                        <TableCell>
+                            Name
+                        </TableCell>
+                        <TableCell>
+                            Movement
+                        </TableCell>
+                        <TableCell>
+                            Weapon
+                        </TableCell>
+                        <TableCell>
+                            Armor
+                        </TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    {this.renderList()}
+                </TableBody>
+            </Table>
         );
     }
 }
