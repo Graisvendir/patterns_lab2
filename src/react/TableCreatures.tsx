@@ -5,11 +5,17 @@ import { Movements } from "../properties/movement";
 import { Property } from "../properties/property";
 import { Weapons } from "../properties/weapons";
 import { Composite } from "../interfaces/composite";
+import Button from "@material-ui/core/Button/Button";
 import Table from "@material-ui/core/Table/Table";
 import TableHead from "@material-ui/core/TableHead/TableHead";
 import TableRow from "@material-ui/core/TableRow/TableRow";
 import TableCell from "@material-ui/core/TableCell/TableCell";
 import TableBody from "@material-ui/core/TableBody/TableBody";
+import { withStyles, Theme } from "@material-ui/core";
+import List from "@material-ui/core/List/List";
+import ListItem from "@material-ui/core/ListItem/ListItem";
+import ListItemText from "@material-ui/core/ListItemText/ListItemText";
+import Typography from "@material-ui/core/Typography/Typography";
 
 function convertToList(_map: Map<string, Property>) {
     let arrayOfValues: Property[] = [];
@@ -20,7 +26,12 @@ function convertToList(_map: Map<string, Property>) {
     let list = arrayOfValues.map(
         (key, index) => {
             if (key)
-                return <li key={index}> {key.getLabel} value: {key.getValue} </li>;
+                return (
+                    <ListItem button key={index}> 
+                        
+                        <ListItemText primary={key.getLabel + ' value: ' + key.getValue} />
+                    </ListItem>
+                );
             else
                 return ;
         }
@@ -28,10 +39,29 @@ function convertToList(_map: Map<string, Property>) {
     return list;
 }
 
-export class TableCreatures extends React.Component<{creaturesComposite: Composite}, {creaturesComposite: Composite}> {
+interface Props {
+    creaturesComposite: Composite;
+    classes: {
+        root: string;
+    }
+}
 
+interface State {
+    creaturesComposite: Composite;
+}
+
+const styles = (theme: Theme) => ({
+    root: {
+        minWidth: '70%'
+    }
+});
+
+class TableCreatures extends React.Component<Props, State> {
+
+    private classes = {};
     constructor(props: any) {
         super(props);
+        this.classes = this.props;
         this.state = {creaturesComposite: this.props.creaturesComposite};
     }
 
@@ -60,40 +90,23 @@ export class TableCreatures extends React.Component<{creaturesComposite: Composi
         return (
             <TableRow key={_index}>
                 <TableCell>
-                    {name}
+                    <Typography component="p">{name}</Typography>
                 </TableCell>
                 <TableCell>
-                    <ul>{convertToList(mov)}</ul>
+                    <List>{convertToList(mov)}</List>
                 </TableCell>
                 <TableCell>
-                    <ul>{convertToList(weap)}</ul>
+                    <List>{convertToList(weap)}</List>
                 </TableCell>
                 <TableCell>
-                    {arm.getLabel + ': ' + arm.getValue}
-                    <button 
-                        type="button" 
-                        className="close float-right" 
-                        aria-label="Close"
+                    <Typography component="p">
+                        {arm.getLabel + ': ' + arm.getValue}
+                    </Typography>
+                    <Button 
                         onClick={() => this.handleClickDeleteCreature(_creature)}
                     >
                         <span aria-hidden="true">&times;</span>
-                    </button>
-                    <div className="dropdown">
-                        <button 
-                            className="btn btn-secondary dropdown-toggle" 
-                            type="button" id="dropdownMenuButton" 
-                            data-toggle="dropdown" 
-                            aria-haspopup="true" 
-                            aria-expanded="false"
-                        >
-                            <span className="io io-ellipses" title="ellipses" aria-hidden="true" />
-                        </button>
-                        <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a className="dropdown-item" href="#">Action</a>
-                            <a className="dropdown-item" href="#">Another action</a>
-                            <a className="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </div>
+                    </Button>
                 </TableCell>
             </TableRow>
         );
@@ -102,20 +115,20 @@ export class TableCreatures extends React.Component<{creaturesComposite: Composi
     render() {
         return (
 
-            <Table className="table table-bordered">
+            <Table>
                 <TableHead>
                     <TableRow>
                         <TableCell>
-                            Name
+                            <Typography component="p"> Name</Typography>
                         </TableCell>
                         <TableCell>
-                            Movement
+                            <Typography component="p">Movement</Typography>
                         </TableCell>
                         <TableCell>
-                            Weapon
+                            <Typography component="p">Weapon</Typography>
                         </TableCell>
                         <TableCell>
-                            Armor
+                            <Typography component="p">Armor</Typography>
                         </TableCell>
                     </TableRow>
                 </TableHead>
@@ -126,3 +139,5 @@ export class TableCreatures extends React.Component<{creaturesComposite: Composi
         );
     }
 }
+
+export default withStyles(styles)(TableCreatures);
