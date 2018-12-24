@@ -31,21 +31,21 @@ export default class FormDialog extends React.Component {
           onClose={this.handleClose}
           aria-labelledby="form-dialog-title"
         >
-          <DialogTitle id="form-dialog-title">Battle!</DialogTitle>
-          <DialogContent>
-            <DialogContentText>
-                Choose creature for attack:  
-            </DialogContentText>
+            <DialogTitle id="form-dialog-title">Battle!</DialogTitle>
+            <DialogContent>
+                <DialogContentText>
+                    Choose creature for attack:  
+                </DialogContentText>
             
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={this.handleClose} color="primary">
-                Cansel
-            </Button>
-            <Button onClick={this.handleClose} color="primary">
-                Fight!
-            </Button>
-          </DialogActions>
+            </DialogContent>
+            <DialogActions>
+                <Button onClick={this.handleClose} color="primary">
+                    Cansel
+                </Button>
+                <Button onClick={this.handleClose} color="primary">
+                    Fight!
+                </Button>
+            </DialogActions>
         </Dialog>
       </div>
     );
