@@ -86,21 +86,24 @@ abstract class Creature {
 	}
 
 	//----------------------------Show Properties----------------------//
-	public showProp(_prop: Property) {
+	public showProp(_prop: Property): string {
 		if (_prop !== null) {
-			console.log(_prop.output());
+			return '\n' + _prop.output();
 		}
+		return '';
 	}
 	
-	public showProperties() {
-		console.log(this.name + ' properties:');
+	public showProperties(): string {
+		let output = '';
+		output += this.name + ' properties:';
 		for (let key of this.movements.values()) {
-			this.showProp(key);
+			output += this.showProp(key);
 		}
 		for (let key of this.weapons.values()) {
-			this.showProp(key);
+			output += this.showProp(key);
 		}
-		this.showProp(this.armor);
+		output += this.showProp(this.armor);
+		return output;
     }
     
     showStatus() {

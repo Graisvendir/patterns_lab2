@@ -11,65 +11,58 @@ import TableHead from "@material-ui/core/TableHead/TableHead";
 import TableRow from "@material-ui/core/TableRow/TableRow";
 import TableCell from "@material-ui/core/TableCell/TableCell";
 import TableBody from "@material-ui/core/TableBody/TableBody";
-import { withStyles, Theme } from "@material-ui/core";
+import { withStyles, Theme, IconButton, Menu, MenuItem } from "@material-ui/core";
 import List from "@material-ui/core/List/List";
 import ListItem from "@material-ui/core/ListItem/ListItem";
 import ListItemText from "@material-ui/core/ListItemText/ListItemText";
 import Typography from "@material-ui/core/Typography/Typography";
+import renderMapProperties from "./renderMapProperties"
 
-function convertToList(_map: Map<string, Property>) {
-    let arrayOfValues: Property[] = [];
-    _map.forEach(element => {
-        arrayOfValues.push(element);    
-    });
-    
-    let list = arrayOfValues.map(
-        (key, index) => {
-            if (key)
-                return (
-                    <ListItem button key={index}> 
-                        
-                        <ListItemText primary={key.getLabel + ' value: ' + key.getValue} />
-                    </ListItem>
-                );
-            else
-                return ;
-        }
-    );
-    return list;
-}
 
 interface Props {
     creaturesComposite: Composite;
-    classes: {
-        root: string;
-    }
 }
 
 interface State {
     creaturesComposite: Composite;
+    menuState: any;
+    dialogState: any;
 }
 
-const styles = (theme: Theme) => ({
-    root: {
-        minWidth: '70%'
-    }
-});
+const columns = [
+    'Name',
+    'State',
+    'Movements',
+    'Weapons',
+    'Armor',
+    'Actions'
+]
 
 class TableCreatures extends React.Component<Props, State> {
 
-    private classes = {};
     constructor(props: any) {
         super(props);
-        this.classes = this.props;
-        this.state = {creaturesComposite: this.props.creaturesComposite};
+        this.state = {creaturesComposite: this.props.creaturesComposite, menuState: false, dialogState: false};
     }
+
+    /*----------------Handle--------------------*/
+    handleClickMenu = (event:any) => {
+        this.setState({ menuState: event.currentTarget });
+    };
+
+    handleCloseMenu = () => {
+        this.setState({ menuState: null });
+    };
 
     handleClickDeleteCreature(_creature: Creature) {
 		let compose = this.state.creaturesComposite;
         compose.del(_creature);
         console.log("delete");
         this.setState({creaturesComposite: compose});
+    }
+
+    handleSay(_creature: Creature) {
+        alert(_creature.showProperties());
     }
 
     renderList() {
@@ -87,26 +80,61 @@ class TableCreatures extends React.Component<Props, State> {
         let mov  : Map<string, Movements.Movement>  = _creature.getMovements;
         let weap : Map<string, Weapons.Weapon>      = _creature.getWeapons;
         let arm  : Defense                          = _creature.getArmor;
+        const { menuState } = this.state;
         return (
             <TableRow key={_index}>
                 <TableCell>
                     <Typography component="p">{name}</Typography>
                 </TableCell>
                 <TableCell>
-                    <List>{convertToList(mov)}</List>
+                    <Typography component="p">{_creature.getStatus}</Typography>
                 </TableCell>
                 <TableCell>
-                    <List>{convertToList(weap)}</List>
+                    <List>{renderMapProperties(mov)}</List>
+                </TableCell>
+                <TableCell>
+                    <List>{renderMapProperties(weap)}</List>
                 </TableCell>
                 <TableCell>
                     <Typography component="p">
                         {arm.getLabel + ': ' + arm.getValue}
                     </Typography>
-                    <Button 
-                        onClick={() => this.handleClickDeleteCreature(_creature)}
+                </TableCell>
+                <TableCell>
+                    <Button
+                        aria-owns={menuState ? 'simple-menu' : undefined}
+                        aria-haspopup="true"
+                        onClick={this.handleClickMenu}
                     >
-                        <span aria-hidden="true">&times;</span>
+                    Menu
                     </Button>
+                    <Menu
+                        id="simple-menu"
+                        anchorEl={menuState}
+                        open={Boolean(menuState)}
+                        onClose={this.handleCloseMenu}
+                    >
+                        <MenuItem 
+                            onClick={
+                                () => {
+                                    this.handleClickDeleteCreature(_creature);
+                                    this.handleCloseMenu;
+                                }
+                            }
+                        >
+                            Delete
+                        </MenuItem>
+                        <MenuItem 
+                            onClick={
+                                () => {
+                                    this.handleSay(_creature);
+                                    this.handleCloseMenu;
+                                }
+                            }
+                        >
+                            Info
+                        </MenuItem>
+                    </Menu>
                 </TableCell>
             </TableRow>
         );
@@ -114,22 +142,18 @@ class TableCreatures extends React.Component<Props, State> {
 
     render() {
         return (
-
             <Table>
                 <TableHead>
                     <TableRow>
-                        <TableCell>
-                            <Typography component="p"> Name</Typography>
-                        </TableCell>
-                        <TableCell>
-                            <Typography component="p">Movement</Typography>
-                        </TableCell>
-                        <TableCell>
-                            <Typography component="p">Weapon</Typography>
-                        </TableCell>
-                        <TableCell>
-                            <Typography component="p">Armor</Typography>
-                        </TableCell>
+                        {
+                            columns.map(
+                                (key, index) => (
+                                    <TableCell key={index}>
+                                        <Typography component="p">{key}</Typography>
+                                    </TableCell>
+                                )
+                            )
+                        }
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -140,4 +164,4 @@ class TableCreatures extends React.Component<Props, State> {
     }
 }
 
-export default withStyles(styles)(TableCreatures);
+export default TableCreatures;
