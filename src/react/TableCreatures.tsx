@@ -13,8 +13,6 @@ import TableCell from "@material-ui/core/TableCell/TableCell";
 import TableBody from "@material-ui/core/TableBody/TableBody";
 import { withStyles, Theme, IconButton, Menu, MenuItem } from "@material-ui/core";
 import List from "@material-ui/core/List/List";
-import ListItem from "@material-ui/core/ListItem/ListItem";
-import ListItemText from "@material-ui/core/ListItemText/ListItemText";
 import Typography from "@material-ui/core/Typography/Typography";
 import renderMapProperties from "./renderMapProperties"
 
@@ -30,13 +28,14 @@ interface State {
 }
 
 const columns = [
+    'Battle',
     'Name',
     'State',
     'Movements',
     'Weapons',
     'Armor',
     'Actions'
-]
+];
 
 class TableCreatures extends React.Component<Props, State> {
 
@@ -67,12 +66,11 @@ class TableCreatures extends React.Component<Props, State> {
 
     renderList() {
         let listCreatures : Creature[] = this.state.creaturesComposite.getCreatures;
-        let rendList = listCreatures.map(
+        return listCreatures.map(
             (key, index) => {
                 return this.renderOneCreature(key, index);
             }
         );
-        return rendList;
     }
     
     renderOneCreature(_creature: Creature, _index: number) {
@@ -83,6 +81,9 @@ class TableCreatures extends React.Component<Props, State> {
         const { menuState } = this.state;
         return (
             <TableRow key={_index}>
+                <TableCell>
+
+                </TableCell>
                 <TableCell>
                     <Typography component="p">{name}</Typography>
                 </TableCell>

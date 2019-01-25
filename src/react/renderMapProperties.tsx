@@ -9,12 +9,12 @@ export default function renderMapProperties(_map: Map<string, Property>) {
     _map.forEach(element => {
         arrayOfValues.push(element);    
     });
-    
-    let list = arrayOfValues.map(
+
+    return arrayOfValues.map(
         (key, index) => {
             if (key)
                 return (
-                    <ListItem button key={index}> 
+                    <ListItem button key={index}>
                         <ListItemText primary={key.getLabel + ' value: ' + key.getValue} />
                     </ListItem>
                 );
@@ -22,5 +22,4 @@ export default function renderMapProperties(_map: Map<string, Property>) {
                 return ;
         }
     );
-    return list;
 }

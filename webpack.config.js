@@ -45,4 +45,4 @@ module.exports = {
         open: true,
         inline: false
     }
-}
+};

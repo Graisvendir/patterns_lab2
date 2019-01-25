@@ -6,11 +6,6 @@ import TableCreatures from "./TableCreatures";
 import Monster from "../creatures/monster";
 import {Composite} from "../interfaces/composite";
 
-const styles = () => ({
-    input: {
-        width: '40%'
-    }
-});
 
 class AppWrapper extends React.Component<{}, {creatures: Composite}> {
 
@@ -53,9 +48,18 @@ class AppWrapper extends React.Component<{}, {creatures: Composite}> {
                             Add Creature 
                         </Button>
                     </Grid>
+                    <Grid item>
+                        <Button
+                            color="primary"
+                            size="large"
+                            onClick={this.handleClickAddCreature}
+                        >
+                            BATTLE!
+                        </Button>
+                    </Grid>
                 </Grid>
                 <Grid item xs={12}>
-                    <TableCreatures creaturesComposite={this.state.creatures}></TableCreatures>
+                    <TableCreatures creaturesComposite={this.state.creatures}/>
                 </Grid>
             </Grid>
         );
