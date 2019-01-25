@@ -3,10 +3,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: {
-        App: './src/react/App.tsx',
         test: './src/test.ts',
         interface: './src/interfaces/interface',
-        monster: './src/creatures/monster'
+        monster: './src/creatures/monster',
+        ui: './src/ui/ui'
     },
     output: {
         filename: '[name].bundle.js',
