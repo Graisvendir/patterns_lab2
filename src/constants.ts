@@ -1,5 +1,5 @@
-import { Movements } from './properties/movement';
-import { Weapons } from './properties/weapons';
+import { Movements } from './controller/properties/movement';
+import { Weapons } from './controller/properties/weapons';
 
 export const ALIVE = 'alive';
 export const DEAD = 'dead';

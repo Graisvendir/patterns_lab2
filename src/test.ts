@@ -1,7 +1,7 @@
-import Monster from './creatures/monster';
-import { Movements } from './properties/movement';
-import { Weapons } from './properties/weapons';
-import * as Battle from './events/battle';
+// import Monster from './creatures/monster';
+// import { Movements } from './properties/movement';
+// import { Weapons } from './properties/weapons';
+// import * as Battle from './events/battle';
 
 /*let Jack = new Monster('Jack');
 let Vasya = new Monster('Vasya');
