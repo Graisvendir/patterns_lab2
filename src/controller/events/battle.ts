@@ -1,5 +1,5 @@
 import Creature from '../creatures/creature';
-import * as Constants from '../constants';
+import * as Constants from '../../constants';
 
 function canAttackerClaimTarget(_attacker: Creature, _target: Creature): boolean {
     if (_attacker.complexSpeed() > _target.complexSpeed())

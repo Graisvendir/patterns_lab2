@@ -1,12 +1,12 @@
 import { Movements } from '../properties/movement';
 import { Weapons } from '../properties/weapons';
 import { Defense } from '../properties/defense';
-import * as Constants from '../constants';
+import * as Constants from '../../constants';
 import { Property } from '../properties/property';
 import * as Interface from '../interfaces/interface';
 
 abstract class Creature {
-    protected movements					: Map<string, Movements.Movement>;
+  	protected movements					: Map<string, Movements.Movement>;
 	protected weapons					: Map<string, Weapons.Weapon>;
 	protected armor						: Defense;
 	protected name						: string;
@@ -69,6 +69,7 @@ abstract class Creature {
 	get getCountOfNotNullProps() : number {
 		return this.countOfNotNullProperties;
 	}
+
 	//---------------------------Setters-------------------------------//
 	// need for construct default creature
 	/**

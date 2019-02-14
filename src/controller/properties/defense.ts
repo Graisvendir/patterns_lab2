@@ -1,5 +1,5 @@
 import { Property } from "./property";
-import { ARMOR } from "../constants";
+import { ARMOR } from "../../constants";
 
 
 export class Defense extends Property {

@@ -1,5 +1,5 @@
 import { Property } from './property';
-import { CLAWS, FANGS, SPIT } from '../constants';
+import { CLAWS, FANGS, SPIT } from '../../constants';
 /**
  * abstract class for Weapons
  */

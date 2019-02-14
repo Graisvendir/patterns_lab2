@@ -1,5 +1,5 @@
 import { Property } from './property';
-import { RUN, FLY, SWIM } from '../constants';
+import { RUN, FLY, SWIM } from '../../constants';
 
 export namespace Movements {
 	/**
