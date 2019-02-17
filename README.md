@@ -7,3 +7,14 @@
 6. Builder, Object Pool
 7. State, Memento, Observer
 8. Command, Indirection, Visitor
+
+## minimal patterns
+- делегирование,  
+- адаптер,  
+- декоратор,  
+- фабричный метод,  
+- приспособленец,  
+- строитель,  
+- синглтон,  
+- наблюдатель,  
+- цепочка обязанностей.
