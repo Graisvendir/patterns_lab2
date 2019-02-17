@@ -1,10 +1,9 @@
 var path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: {
-        App: './src/react/App.tsx',
-        test: './src/test.ts',
+        App: './src/main.ts',
+        // test: './src/test.ts',
         interface: './src/interfaces/interface',
         monster: './src/creatures/monster'
     },
@@ -13,13 +12,6 @@ module.exports = {
         path: path.resolve(__dirname, 'build')
     },
     devtool: "source-map",
-    plugins: [
-        new HtmlWebpackPlugin({
-            title: 'Creatures',
-            template: './src/index.html',
-            filename: './index.html' //relative to root of the application
-        })
-    ],
     mode: 'development',
     module: {
         rules: [
@@ -37,12 +29,12 @@ module.exports = {
     },
     resolve: {
         extensions: [ '.tsx', '.ts', '.js', 'jsx' ]
-    },
-    devServer: {
-        contentBase: path.join(__dirname, './build'),
-        port: 9000,
-        hot: false,
-        open: true,
-        inline: false
     }
+    // devServer: {
+    //     contentBase: path.join(__dirname, './build'),
+    //     port: 9000,
+    //     hot: false,
+    //     open: true,
+    //     inline: false
+    // }
 }

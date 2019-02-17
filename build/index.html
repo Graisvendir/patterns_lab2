@@ -13,18 +13,30 @@
 	<div class="grid-container">
 		<div class="grid-x grid-margin-x top-form-input">
 			<div class="cell small-9">
-				<input  type="text" placeholder="Creature Name" />
+				<input id="name" type="text" placeholder="Creature Name" />
 			</div>
 			<div class="cell auto">
-				<button class="button main-button-add" type="button">Add creature</button>
+				<button id="addCreature" class="button main-button-add" type="button">Add creature</button>
 			</div>
 		</div>
 		<hr>
-		<div class="grid-x grid-padding-x small-up-2 medium-up-4 large-up-6">
+		<div id="content" class="grid-x grid-padding-x small-up-2 medium-up-4 large-up-6">
 			<div class="cell">
 				<img class="thumbnail" src="https://placehold.it/300x400">
-				<h5>Nulla At Nulla Justo, Eget</h5>
-				<p>$400</p>
+				<h5>id: Name</h5>
+				<p>Movements:</p>
+				<ul>
+					<li>Run: number</li>
+					<li>Fly: number</li>
+					<li>Swim: number</li>
+				</ul>
+				<p>Weapons</p>
+				<ul>
+					<li>Claws: number</li>
+					<li>Fangs: number</li>
+					<li>Spit: number</li>
+				</ul>
+				<p>Defense: number</p>
 				<a href="#" class="button small expanded hollow">Buy</a>
 			</div>
 			<div class="cell">

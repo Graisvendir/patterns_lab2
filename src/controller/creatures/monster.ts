@@ -8,15 +8,17 @@ class Monster extends Creature {
 	
 	constructor(
 		_name: string,
+		_id: number,
 		_movements?: Map<string, Movements.Movement>,
 		_weapons?: Map<string, Weapons.Weapon>,
 		_defense: Defense = new Defense(10)
 	){
 		super(
 			_name,
+			_id,
 			_movements,
 			_weapons,
-			_defense
+			_defense,
 		);
 		this.updateSomeProperty(generateRandomProperty());
 	}	

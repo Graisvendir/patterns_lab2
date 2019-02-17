@@ -6,20 +6,24 @@ import { Property } from '../properties/property';
 import * as Interface from '../interfaces/interface';
 
 abstract class Creature {
-  	protected movements					: Map<string, Movements.Movement>;
+	protected movements					: Map<string, Movements.Movement>;
 	protected weapons					: Map<string, Weapons.Weapon>;
 	protected armor						: Defense;
 	protected name						: string;
 	protected Status					: string;
 	protected countOfNotNullProperties	: number = 1;
+	protected id						: number;
 
 	constructor(
 		_name: string,
+		_id: number,
 		_movements?: Map<string, Movements.Movement>,
 		_weapons?: Map<string, Weapons.Weapon>,
 		_armor: Defense = new Defense(10)
 	) {
 		this.name = _name;
+		this.id = _id;
+
 		if (_movements === undefined) {
 			this.setDefaultMovements();
 		} else {
@@ -43,11 +47,11 @@ abstract class Creature {
 		}
 		this.armor = _armor;
 		this.iAlive();
-    }
+		}
 	
 	//--------------------------Getters-----------------------------//
-    get getName(): string {
-        return this.name;
+		get getName(): string {
+				return this.name;
 	}
 	
 	get getMovements(): Map<string, Movements.Movement> {
@@ -68,6 +72,10 @@ abstract class Creature {
 
 	get getCountOfNotNullProps() : number {
 		return this.countOfNotNullProperties;
+	}
+
+	get getId() : number {
+		return this.id;
 	}
 
 	//---------------------------Setters-------------------------------//
@@ -102,11 +110,11 @@ abstract class Creature {
 			this.showProp(key);
 		}
 		this.showProp(this.armor);
-    }
-    
-    showStatus() {
+		}
+		
+		showStatus() {
 		console.log(this.name + ' is ' + this.Status);
-    }
+		}
 	
 	//-------------Summ of properties---------------//
 	// need for battle
@@ -126,14 +134,14 @@ abstract class Creature {
 				speed += key.getValue;
 		}
 		return speed;
-    }
-    
-    complexArmor(): number {
-        return this.armor.getValue;
-    }
+		}
+		
+		complexArmor(): number {
+				return this.armor.getValue;
+		}
 
-    //---------------Change Status--------------------//
-    iAlive() {
+		//---------------Change Status--------------------//
+		iAlive() {
 		this.Status = Constants.ALIVE;
 		this.showStatus();
 	}
@@ -151,11 +159,11 @@ abstract class Creature {
 	iEscape() {
 		this.Status = Constants.ESCAPE;
 		this.showStatus();
-    }
-    
-    //------------------Upgrade Properties--------------------//
-    
-    private upgradeExistingMovement(_movement: Movements.Movement) {
+		}
+		
+		//------------------Upgrade Properties--------------------//
+		
+		private upgradeExistingMovement(_movement: Movements.Movement) {
 		let value = this.movements.get(_movement.getLabel).getValue + _movement.getValue;
 		_movement.setValue = value;
 		this.movements.set(_movement.getLabel, _movement);
