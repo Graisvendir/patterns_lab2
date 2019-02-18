@@ -11,14 +11,14 @@ function attackerKillTarget(_attacker: Creature, _target: Creature) {
     console.log('    ' + _attacker.getName + ' win ');
     _attacker.iFeeding();
     _target.iDead();
-    _attacker.takePropertyFrom(_target);
+    _attacker.takeRandomPropertyFrom(_target);
 }
 
 function targetKillAttacker(_attacker: Creature, _target: Creature) {
     console.log('    ' + _target.getName + ' win ');
     _attacker.iDead();
     _target.iFeeding();
-    _target.takePropertyFrom(_attacker)
+    _target.takeRandomPropertyFrom(_attacker)
 }
 
 /**

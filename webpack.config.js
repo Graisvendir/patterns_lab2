@@ -2,14 +2,14 @@ var path = require('path');
 
 module.exports = {
     entry: {
-        App: './src/main.ts',
+        Main: './src/main.ts',
         // test: './src/test.ts',
-        interface: './src/interfaces/interface',
-        monster: './src/creatures/monster'
+        monster: './src/controller/creatures/monster.ts',
+        addCreature: './src/view/addCreature.ts'
     },
     output: {
         filename: '[name].bundle.js',
-        path: path.resolve(__dirname, 'build')
+        path: path.resolve(__dirname, 'build/js/app')
     },
     devtool: "source-map",
     mode: 'development',

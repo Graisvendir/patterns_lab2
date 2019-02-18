@@ -3,7 +3,7 @@ import { Weapons } from '../properties/weapons';
 import { Defense } from '../properties/defense';
 import * as Constants from '../../constants';
 import { Property } from '../properties/property';
-import * as Interface from '../interfaces/interface';
+import { Iterator } from '../interfaces/iterator';
 
 abstract class Creature {
 	protected movements					: Map<string, Movements.Movement>;
@@ -237,13 +237,13 @@ abstract class Creature {
 	 * take property after battle
 	 * @param _creature { Creature } 
 	 */
-	takePropertyFrom(_creature: Creature): boolean {
+	takeRandomPropertyFrom(_creature: Creature): boolean {
 		let date = Math.random();
 		let count = _creature.getCountOfNotNullProps;
 		
 		let random = Math.round((date * 1000) % count);
-		console.log(random);
-		let updProp = Interface.getPropertyFromCreatureByIndex(random, _creature);
+		let iter = new Iterator(this);
+		let updProp = iter.getPropertyByIndex(random);
 		this.updateSomeProperty(updProp);
 		console.log('	' + this.name + ' take property: ' +  updProp.getLabel);
 		return true;

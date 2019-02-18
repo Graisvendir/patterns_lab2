@@ -56,4 +56,11 @@ export class Iterator extends abstractIterator {
 	Current(): Property {
 		return this.array[this.current];
 	}
+
+    getPropertyByIndex(index: number): Property {
+        while (this.getCurrent !== index) {
+            this.Next();
+        }
+        return this.Current();
+    }
 }
