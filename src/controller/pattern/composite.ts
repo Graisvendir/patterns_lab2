@@ -42,4 +42,12 @@ export class Composite {
             }
         );
     }
+
+    public delById(_id: number) {
+        this.creatures = this.creatures.filter(
+            (_elem) => {
+                return _elem.getId != _id;
+            }
+        );
+    }
 }

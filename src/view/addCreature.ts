@@ -2,6 +2,7 @@ import Creature from "../controller/creatures/creature";
 import {mainComposite} from '../main'
 import Monster from "../controller/creatures/monster";
 import { RUN, SWIM, FLY, CLAWS, FANGS, SPIT } from "../constants";
+import { deleteCreature } from "./deleteCreature";
 
 export function addCreature() {
     let inputName = <HTMLInputElement>document.getElementById('name');
@@ -20,9 +21,12 @@ function addNewCreatureToView(_creature: Creature) {
     let fangs = _creature.getWeapons.get(FANGS).getValue;
     let spit = _creature.getWeapons.get(SPIT).getValue;
     let def = _creature.getArmor.getValue;
-    content.innerHTML += 
-    '<div id="' + _creature.getId + '"class="cell">' +
-        '<img class="thumbnail" src="./images/plaseholder.png">' +
+    content.innerHTML = content.innerHTML +  
+    '<div id="' + _creature.getId + '" class="cell callout" data-closable>' +
+        '<button id="del' + _creature.getId + '" class="close-button" aria-label="Close alert" type="button" data-close>' +
+			'<span aria-hidden="true">&times;</span>' +
+		'</button>' +
+        '<img class="thumbnail" src="./img/monster.jpg">' +
         '<h5>' + _creature.getName + '</h5>' +
         '<p>Movements:</p>' +
         '<ul>' +
@@ -39,28 +43,6 @@ function addNewCreatureToView(_creature: Creature) {
         '<p>Defense: ' + def + '</p>' +
         '<a href="#" class="button small expanded hollow">Fight!</a>' +
     '</div>';
+    let button = <HTMLButtonElement>document.getElementById('del' + _creature.getId);
+    button.onclick = deleteCreature;
 }
-
-
-
-// шлак
-
-// function getElementByIdOnView(_id: number): HTMLElement {
-//     let elem = document.getElementById('content');
-//     for (let i = 0; i < elem.childElementCount; i++) {
-//         if (_cretureID == i) {
-//             let curChild = elem.firstElementChild;
-//             return curChild;
-//         }
-//     }
-// }
-
-// function getMonster(_cretureID: number) {
-//     let elem = document.getElementById('content');
-//     for (let i = 0; i < elem.childElementCount; i++) {
-//         if (_cretureID == i) {
-//             let curChild = elem.firstElementChild;
-//             return curChild;
-//         }
-//     }
-// }
