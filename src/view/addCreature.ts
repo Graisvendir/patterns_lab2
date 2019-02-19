@@ -37,7 +37,7 @@ function addNewCreatureToView(_creature: Creature) {
             '<li>Spit: ' + spit + '</li>' +
         '</ul>' +
         '<p>Defense: ' + def + '</p>' +
-        '<a href="#" class="button small expanded hollow">Buy</a>' +
+        '<a href="#" class="button small expanded hollow">Fight!</a>' +
     '</div>';
 }
 

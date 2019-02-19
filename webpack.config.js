@@ -3,8 +3,6 @@ var path = require('path');
 module.exports = {
     entry: {
         Main: './src/main.ts',
-        // test: './src/test.ts',
-        monster: './src/controller/creatures/monster.ts',
         addCreature: './src/view/addCreature.ts'
     },
     output: {

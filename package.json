@@ -10,7 +10,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "tslint": "^5.11.0"
+    "tslint": "^5.11.0",
+    "webpack": "^4.29.5",
+    "webpack-cli": "^3.2.3"
   },
   "devDependencies": {
     "ts-loader": "^5.1.0",

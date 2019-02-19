@@ -20,16 +20,16 @@ export const ARMOR = 'armor';
 
 export function createDefaultMovements() : Map<string, Movements.Movement> {
 	let newMovements = new Map<string, Movements.Movement>();
-	newMovements.set(RUN, null);
-	newMovements.set(FLY, null);
-	newMovements.set(SWIM, null);
+	newMovements.set(RUN, new Movements.canRun(0));
+	newMovements.set(FLY, new Movements.canFly(0));
+	newMovements.set(SWIM, new Movements.canSwim(0));
 	return newMovements;
 }
 
 export function createDefaultWeapons() : Map<string, Weapons.Weapon> {
 	let newWeapons = new Map<string, Weapons.Weapon>();
-	newWeapons.set(CLAWS, null);
-	newWeapons.set(FANGS, null);
-	newWeapons.set(SPIT, null);
+	newWeapons.set(CLAWS, new Weapons.Claws);
+	newWeapons.set(FANGS, new Weapons.Fangs);
+	newWeapons.set(SPIT, new Weapons.Spit);
 	return newWeapons;
 }
