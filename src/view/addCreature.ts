@@ -23,7 +23,7 @@ function addNewCreatureToView(_creature: Creature) {
     let def = _creature.getArmor.getValue;
     content.innerHTML = content.innerHTML +  
     '<div id="' + _creature.getId + '" class="cell callout" data-closable>' +
-        '<button id="del' + _creature.getId + '" class="close-button" aria-label="Close alert" type="button" data-close>' +
+        '<button id="del" class="close-button" aria-label="Close alert" type="button" data-close>' +
 			'<span aria-hidden="true">&times;</span>' +
 		'</button>' +
         '<img class="thumbnail" src="./img/monster.jpg">' +
@@ -41,7 +41,7 @@ function addNewCreatureToView(_creature: Creature) {
             '<li>Spit: ' + spit + '</li>' +
         '</ul>' +
         '<p>Defense: ' + def + '</p>' +
-        '<a href="#" class="button small expanded hollow">Fight!</a>' +
+        '<p><button class="large button" data-open="fightBoard">Fight</button></p>' +
     '</div>';
     let button = <HTMLButtonElement>document.getElementById('del' + _creature.getId);
     button.onclick = deleteCreature;
