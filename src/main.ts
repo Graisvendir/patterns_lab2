@@ -1,9 +1,9 @@
-import { Composite } from "./controller/pattern/composite";
-import { addCreature } from "./view/addCreature";
-import Creature from "./controller/creatures/creature";
-import Monster from "./controller/creatures/monster";
-import Robot from "./controller/creatures/robot";
+import Monster from "./model/creatures/monster";
+import Robot from "./model/creatures/robot";
+import RobotToMonster from "./controller/pattern/adapter";
 
-export let currentCreature = Object;
+export let currentCreature = 0;
 export const monsterTemplate: Monster = new Monster('monster');
-export const robotTemplate: Robot = new Robot('monster');
+monsterTemplate.setDefaultMovements();
+export const robotTemplate: Robot = new Robot('robot');
+export const adaptedRobot: RobotToMonster = new RobotToMonster('roboMonster');

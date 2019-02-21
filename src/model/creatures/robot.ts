@@ -8,19 +8,22 @@ class Robot {
     
     constructor(
         _name: string,
-        _ride: Movements.canRide = new Movements.canRide(10)
+        _rideValue?: number
     ) {
         this.name = _name;
-        this.ride = _ride;
+        this.ride = new Movements.canRide(0);
+        if (_rideValue) {
+            this.ride.setValue = _rideValue;
+        }
     }
 
     get getName(): string {
 		return this.name;
 	}
 	
-	get getMovements(): Movements.canRide {
+	get getRide(): Movements.canRide {
 		return this.ride;
-	}
+    }
 }
 
 export default Robot;

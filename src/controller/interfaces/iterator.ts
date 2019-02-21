@@ -1,5 +1,6 @@
-import { Property } from "../properties/property";
-import Creature from "../creatures/creature";
+
+import Creature from "../../model/creatures/creature";
+import { Property } from "../../model/properties/property";
 
 abstract class abstractIterator {
     abstract First(): Property;
