@@ -1,5 +1,5 @@
 import { Property } from './property';
-import { RUN, FLY, SWIM } from '../../constants';
+import { RUN, FLY, SWIM, RIDE } from '../../constants';
 
 export namespace Movements {
 	/**
@@ -41,4 +41,9 @@ export namespace Movements {
 		}
 	}
 
+	export class canRide extends Movement {
+		constructor(_speed: number = 0) {
+			super(RIDE, _speed);
+		}
+	}
 }

@@ -9,15 +9,11 @@ function canAttackerClaimTarget(_attacker: Creature, _target: Creature): boolean
 
 function attackerKillTarget(_attacker: Creature, _target: Creature) {
     console.log('    ' + _attacker.getName + ' win ');
-    _attacker.iFeeding();
-    _target.iDead();
     _attacker.takeRandomPropertyFrom(_target);
 }
 
 function targetKillAttacker(_attacker: Creature, _target: Creature) {
     console.log('    ' + _target.getName + ' win ');
-    _attacker.iDead();
-    _target.iFeeding();
     _target.takeRandomPropertyFrom(_attacker)
 }
 
@@ -28,22 +24,7 @@ function targetKillAttacker(_attacker: Creature, _target: Creature) {
  * @returns {boolean} true if _attacker win battle, else false
  */
 function battle(_attacker: Creature, _target: Creature): boolean {
-    //if i can destroy _attacker monster
-    if (_target.complexArmor() < _attacker.complexWeapon()) {
-        console.log('   ' + _attacker.getName + ' pierce armor of ' + _target.getName);
-        attackerKillTarget(_attacker, _target);
-        return true; 
-    }
-    //if i cant destroy, check, if he can destroy me
-    if (_target.complexWeapon() > _attacker.complexArmor()) {
-        //if he can
-        console.log('   ' + _attacker.getName + ' dont pierce armor of ' + _target.getName);
-        console.log('   ' + _target.getName + ' is counter-attack!');
-        targetKillAttacker(_attacker, _target);
-        return false;
-    }
     console.log('   No one can pierce armor. They run away!');
-    _attacker.iEscape();
     return false;
 }
 
@@ -53,16 +34,5 @@ function battle(_attacker: Creature, _target: Creature): boolean {
  * @param {Creature} _target    Creature, what will attacked
  */
 export function attack(_attacker: Creature, _target: Creature) {
-    if (canAttackerClaimTarget(_attacker, _target)) {
-        if (_target.getStatus !== Constants.DEAD) {
-            console.log('START BATTLE: ' + _attacker.getName + ' VS ' + _target.getName);
-            battle(_attacker, _target);
-        } else {
-            console.log(_attacker.getName + ' cant attack ' + _target.getName);
-            console.log(_target.getName + ' is dead!');
-        }
-    } else {
-        _target.iEscape();
-        console.log(_target.getName + ' excape from ' + _attacker.getName);
-    }
+    
 }

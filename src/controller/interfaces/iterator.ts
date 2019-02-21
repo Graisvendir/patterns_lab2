@@ -23,12 +23,6 @@ export class Iterator extends abstractIterator {
                 this.array.push(key);
             }
         }
-        for (let key of _creature.getWeapons.values()) {
-            if (key) {
-                this.array.push(key);
-            }
-        }
-        this.array.push(_creature.getArmor);
     }
 
 	get getCurrent(): number {

@@ -1,5 +1,3 @@
-import { mainComposite } from "../main";
-
 export function buttonFightClick(event: Event) {
     let creatureId = (<HTMLButtonElement>event.target).parentElement.id;
     console.log(creatureId);
