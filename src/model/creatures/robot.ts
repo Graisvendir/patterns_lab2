@@ -3,26 +3,38 @@ import { Movements } from "../properties/movement";
 
 class Robot {
 
-    private ride  	: Movements.canRide;
-    private name	: string;
+    private _ride  	: Movements.canRide;
+    private _name	: string;
+    private imgSrc  : string;
     
     constructor(
-        _name: string,
-        _rideValue?: number
+        _name: string
     ) {
-        this.name = _name;
-        this.ride = new Movements.canRide(0);
-        if (_rideValue) {
-            this.ride.setValue = _rideValue;
-        }
+        this._name = _name;
     }
 
     get getName(): string {
-		return this.name;
+		return this._name;
 	}
 	
 	get getRide(): Movements.canRide {
-		return this.ride;
+		return this._ride;
+    }
+
+    set ride(value: Movements.canRide) {
+        this._ride = value;
+    }
+
+    set name(value: string) {
+        this._name = value;
+    }
+
+    get getImgSrc(): string {
+        return this.imgSrc;
+    }
+
+    set setImgSrc(_value: string) {
+        this.imgSrc = _value;
     }
 }
 

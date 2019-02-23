@@ -1,16 +1,26 @@
 import Creature from '../creatures/creature';
-import { createDefaultMovements } from '../../constants';
 
 class Monster extends Creature {
-	
+
+	private imgSrc: string;
+
 	constructor(
 		_name: string
 	){
 		super(_name);
-	}	
+	}
 
-	setDefaultMovements() {
-		this.movements = createDefaultMovements();
+    set setImgSrc(_value: string) {
+        this.imgSrc = _value;
+    }
+
+    get getImgSrc(): string {
+        return this.imgSrc;
+    }
+
+    show() {
+        let place = <HTMLImageElement>document.getElementById('persona');
+        place.src = '/img/monster.jpg';
 	}
 }
 

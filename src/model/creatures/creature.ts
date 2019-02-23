@@ -1,31 +1,38 @@
 import { Movements } from '../properties/movement';
 import * as Constants from '../../constants';
+import canRun = Movements.canRun;
+import canFly = Movements.canFly;
+import canSwim = Movements.canSwim;
 
 abstract class Creature {
-	protected movements					: Map<string, Movements.Movement>;
-	protected name						: string;
+	protected run		: canRun;
+    protected fly		: canFly;
+	protected swim		: canSwim;
+	protected name		: string;
 
 	constructor(
 		_name: string
 	) {
 		this.name = _name;
 	}
-	
 
-	get getName(): string {
-		return this.name;
-	}
-	
-	get getRunSpeed(): number {
-		return this.movements.get(Constants.RUN).getValue;
-	}
+    get getRun(): Movements.canRun {
+        return this.run;
+    }
 
-	get getMovements(): Map<string, Movements.Movement> {
-		return this.movements;
-	}
+    get getFly(): Movements.canFly {
+        return this.fly;
+    }
 
-	show
+    get getSwim(): Movements.canSwim {
+        return this.swim;
+    }
 
+    get getName(): string {
+        return this.name;
+    }
+
+    abstract show(): void;
 }
 
 export default Creature;
