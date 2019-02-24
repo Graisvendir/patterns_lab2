@@ -11,6 +11,7 @@ class Robot {
         _name: string
     ) {
         this.name = _name;
+        this.imgSrc = '';
     }
 
     get getName(): string {

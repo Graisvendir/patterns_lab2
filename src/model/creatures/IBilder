@@ -1,9 +1,0 @@
-import Creature from "./creature";
-
-
-interface ICreatureBuilder {
-
-    reset(): Creature;
-    setName(): void;
-    setRun(): void;
-}

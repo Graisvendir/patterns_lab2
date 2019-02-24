@@ -10,6 +10,7 @@ export abstract class Property {
 	constructor(_label: string, _value: number) {
 		this.label = _label;
 		this.value = _value;
+		this.imgSrc = [];
 	}
 
 	get getLabel(): string {

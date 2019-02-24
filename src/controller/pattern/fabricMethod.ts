@@ -34,6 +34,7 @@ export default class FabricMethod {
 
     fabricDefaultMonster() : Monster {
         let defMonster = new Monster('defaultMonster');
+        defMonster.setImgSrc = './img/monster.jpg';
         defMonster.setRun = this.defaultRun;
         defMonster.setFly = this.defaultFly;
         defMonster.setSwim = this.defaultSwim;
@@ -41,13 +42,15 @@ export default class FabricMethod {
     }
 
     fabricDefaultRobot() : Robot {
-        let defMonster = new Robot('defaultMonster');
-        defMonster.setRide = this.defaultRun;
-        return defMonster;
+        let defRobot = new Robot('defaultMonster');
+        defRobot.setImgSrc = './img/robot.jpg';
+        defRobot.setRide = this.defaultRun;
+        return defRobot;
     }
 
     fabricDefaultAdaptedRobot(_robot: Robot) : RobotToMonster {
         let defaultAdoptedRobot = new RobotToMonster('defaultAdoptedRobot', _robot);
+        defaultAdoptedRobot.setImgSrc = './img/adaptedRobot.png'
         defaultAdoptedRobot.convertRideToRun();
         return defaultAdoptedRobot;
     }

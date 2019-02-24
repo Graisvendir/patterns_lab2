@@ -17,11 +17,13 @@ class Facade {
         this.robotTemplate = fabrick.fabricDefaultRobot();
         this.adaptedRobot = fabrick.fabricDefaultAdaptedRobot(this.robotTemplate);
 
-        document.getElementById('monster').onclick = this.showMonster;
-        document.getElementById('robot').onclick = this.showRobot;
-        document.getElementById('adaptedRobot').onclick = this.showAdaptedRobot;
-        document.getElementById('run').onclick;
-
+        document.getElementById('monster').onclick = this.showMonster.bind(this);
+        document.getElementById('robot').onclick = this.showRobot.bind(this);
+        document.getElementById('adaptedRobot').onclick = this.showAdaptedRobot.bind(this);
+        document.getElementById('run').onclick = this.showRun.bind(this);
+        document.getElementById('fly').onclick = this.showFly.bind(this);
+        document.getElementById('swim').onclick = this.showSwim.bind(this);
+        document.getElementById('ride').onclick = this.showRide.bind(this);
     }
 
     set setCurrentCreature(_index: number) {
@@ -54,7 +56,7 @@ class Facade {
         let place = <HTMLImageElement>document.getElementById('motion');
         switch (this.currentCreature) {
             case 1:
-                this.monsterTemplate.getRun.getImgSrc.forEach(element => {
+                this.monsterTemplate.getFly.getImgSrc.forEach(element => {
                     setTimeout(function () { place.src = element }, 500);
                 });
                 break;
@@ -73,7 +75,7 @@ class Facade {
         let place = <HTMLImageElement>document.getElementById('motion');
         switch (this.currentCreature) {
             case 1:
-                this.monsterTemplate.getRun.getImgSrc.forEach(element => {
+                this.monsterTemplate.getSwim.getImgSrc.forEach(element => {
                     setTimeout(function () { place.src = element }, 500);
                 });
                 break;
@@ -94,7 +96,7 @@ class Facade {
             case 1:
                 alert(monsterError);
             case 2:
-                this.monsterTemplate.getRun.getImgSrc.forEach(element => {
+                this.robotTemplate.getRide.getImgSrc.forEach(element => {
                     setTimeout(function () { place.src = element }, 500);
                 });
                 break;
@@ -112,34 +114,53 @@ class Facade {
         let place = <HTMLImageElement>document.getElementById('persona');
         place.src = this.monsterTemplate.getImgSrc;
         this.currentCreature = 1;
+        (<HTMLImageElement>document.getElementById('motion')).src = '';
     }
 
     showRobot() {
         let place = <HTMLImageElement>document.getElementById('persona');
         place.src = this.robotTemplate.getImgSrc;
         this.currentCreature = 2;
+        (<HTMLImageElement>document.getElementById('motion')).src = '';
     }
 
     showAdaptedRobot() {
         let place = <HTMLImageElement>document.getElementById('persona');
         place.src = this.adaptedRobot.getImgSrc;
         this.currentCreature = 3;
+        (<HTMLImageElement>document.getElementById('motion')).src = '';
     }
 
 
     //-------------------------- buttons of creatures -----------------------------//
-    buttonMonsterClick() {
+    buttonMonsterClick(_event: Event) {
         this.showMonster();
     }
 
-    buttonRobotClick() {
+    buttonRobotClick(_event: Event) {
         this.showRobot();
     }
 
-    buttonAdaptedRobotClick() {
+    buttonAdaptedRobotClick(_event: Event) {
         this.showAdaptedRobot();
     }
 
+    buttonRun(_event: Event) {
+        this.showRun();
+    }
+
+    buttonFly(_event: Event) {
+        this.showFly();
+    }
+    
+    buttonSwim(_event: Event) {
+        this.showSwim();
+    }
+    
+    buttonRide(_event: Event) {
+        this.showRide();
+    }
+    
 }
 
 export default Facade;

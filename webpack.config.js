@@ -2,8 +2,7 @@ var path = require('path');
 
 module.exports = {
     entry: {
-        Main: './src/main.ts',
-        addCreature: './src/view/addCreature.ts'
+        Main: './src/main.ts'
     },
     output: {
         filename: '[name].bundle.js',
