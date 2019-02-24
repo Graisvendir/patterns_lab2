@@ -1,8 +1,7 @@
 import Creature from '../creatures/creature';
+import { facade } from '../../main';
 
 class Monster extends Creature {
-
-	private imgSrc: string;
 
 	constructor(
 		_name: string
@@ -10,17 +9,8 @@ class Monster extends Creature {
 		super(_name);
 	}
 
-    set setImgSrc(_value: string) {
-        this.imgSrc = _value;
-    }
-
-    get getImgSrc(): string {
-        return this.imgSrc;
-    }
-
     show() {
-        let place = <HTMLImageElement>document.getElementById('persona');
-        place.src = '/img/monster.jpg';
+        facade.showMonster();
 	}
 }
 

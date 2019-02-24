@@ -1,18 +1,26 @@
 import Monster from "../model/creatures/monster";
 import Robot from "../model/creatures/robot";
 import RobotToMonster from "../controller/pattern/adapter";
+import { robotError, adaptedRobotError, monsterError } from "../constants";
+import FabricMethod from "../controller/pattern/fabricMethod";
 
 class Facade {
     private currentCreature: number;
-    private monsterTemplate: Monster ;
+    private monsterTemplate: Monster;
     private robotTemplate: Robot;
-    private adaptedRobot: RobotToMonster ;
+    private adaptedRobot: RobotToMonster;
 
     constructor() {
+        let fabrick = new FabricMethod();
         this.currentCreature = 0;
-        this.monsterTemplate = new Monster('monster');
-        this.robotTemplate = new Robot('robot');
-        this.adaptedRobot = new RobotToMonster('roboMonster');
+        this.monsterTemplate = fabrick.fabricDefaultMonster();
+        this.robotTemplate = fabrick.fabricDefaultRobot();
+        this.adaptedRobot = fabrick.fabricDefaultAdaptedRobot(this.robotTemplate);
+
+        document.getElementById('monster').onclick = this.showMonster;
+        document.getElementById('robot').onclick = this.showRobot;
+        document.getElementById('adaptedRobot').onclick = this.showAdaptedRobot;
+        document.getElementById('run').onclick;
 
     }
 
@@ -20,56 +28,116 @@ class Facade {
         this.currentCreature = _index;
     }
 
-
-// -----------------------  buttons show movements ---------------------------//
+    // -----------------------  SHOW MOVEMENTS ---------------------------//
     showRun() {
         let place = <HTMLImageElement>document.getElementById('motion');
-        setTimeout(function() {place.src = '/img/run/1.png'}, 500);
-        setTimeout(function() {place.src = '/img/run/2.png'}, 500);
-        setTimeout(function() {place.src = '/img/run/3.png'}, 500);
-        setTimeout(function() {place.src = '/img/run/4.png'}, 500);
-        setTimeout(function() {place.src = '/img/run/5.png'}, 500);
+        switch (this.currentCreature) {
+            case 1:
+                this.monsterTemplate.getRun.getImgSrc.forEach(element => {
+                    setTimeout(function () { place.src = element }, 500);
+                });
+                break;
+            case 2:
+                alert(robotError);
+                break;
+            case 3:
+                this.adaptedRobot.getRun.getImgSrc.forEach(element => {
+                    setTimeout(function () { place.src = element }, 500);
+                });
+                break;
+            default:
+                break;
+        }
     }
 
     showFly() {
         let place = <HTMLImageElement>document.getElementById('motion');
-        setTimeout(function() {place.src = '/img/fly/1.png'}, 500);
-        setTimeout(function() {place.src = '/img/fly/2.png'}, 500);
-        setTimeout(function() {place.src = '/img/fly/3.png'}, 500);
-        setTimeout(function() {place.src = '/img/fly/4.png'}, 500);
+        switch (this.currentCreature) {
+            case 1:
+                this.monsterTemplate.getRun.getImgSrc.forEach(element => {
+                    setTimeout(function () { place.src = element }, 500);
+                });
+                break;
+            case 2:
+                alert(robotError);
+                break;
+            case 3:
+                alert(adaptedRobotError);
+                break;
+            default:
+                break;
+        }
     }
 
     showSwim() {
         let place = <HTMLImageElement>document.getElementById('motion');
-        setTimeout(function() {place.src = '/img/swim/1.png'}, 500);
-        setTimeout(function() {place.src = '/img/swim/2.png'}, 500);
-        setTimeout(function() {place.src = '/img/swim/3.png'}, 500);
+        switch (this.currentCreature) {
+            case 1:
+                this.monsterTemplate.getRun.getImgSrc.forEach(element => {
+                    setTimeout(function () { place.src = element }, 500);
+                });
+                break;
+            case 2:
+                alert(robotError);
+                break;
+            case 3:
+                alert(adaptedRobotError);
+                break;
+            default:
+                break;
+        }
     }
 
     showRide() {
         let place = <HTMLImageElement>document.getElementById('motion');
-        setTimeout(function() {place.src = '/img/ride/1.png'}, 500);
-        setTimeout(function() {place.src = '/img/ride/2.png'}, 500);
-        setTimeout(function() {place.src = '/img/ride/3.png'}, 500);
+        switch (this.currentCreature) {
+            case 1:
+                alert(monsterError);
+            case 2:
+                this.monsterTemplate.getRun.getImgSrc.forEach(element => {
+                    setTimeout(function () { place.src = element }, 500);
+                });
+                break;
+            case 3:
+                alert(adaptedRobotError);
+                break;
+            default:
+                break;
+        }
+    }
+
+    // ----------------------- SHOW CREACTURES ----------------------------//
+
+    showMonster() {
+        let place = <HTMLImageElement>document.getElementById('persona');
+        place.src = this.monsterTemplate.getImgSrc;
+        this.currentCreature = 1;
+    }
+
+    showRobot() {
+        let place = <HTMLImageElement>document.getElementById('persona');
+        place.src = this.robotTemplate.getImgSrc;
+        this.currentCreature = 2;
+    }
+
+    showAdaptedRobot() {
+        let place = <HTMLImageElement>document.getElementById('persona');
+        place.src = this.adaptedRobot.getImgSrc;
+        this.currentCreature = 3;
     }
 
 
     //-------------------------- buttons of creatures -----------------------------//
-    static buttonMonsterClick() {
-        // set currentCreature
-        this.monsterTemplate.show();
+    buttonMonsterClick() {
+        this.showMonster();
     }
 
-    static buttonRobotClick() {
-        // set currentCreature
-        let place = <HTMLImageElement>document.getElementById('persona');
-        place.src = '/img/robot.jpg';
+    buttonRobotClick() {
+        this.showRobot();
     }
 
-    static buttonAdaptedRobotClick() {
-        // set currentCreature
-        let place = <HTMLImageElement>document.getElementById('persona');
-        place.src = '/img/adaptedRobot.jpg';
+    buttonAdaptedRobotClick() {
+        this.showAdaptedRobot();
     }
 
 }

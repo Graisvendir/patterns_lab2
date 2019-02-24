@@ -1,19 +1,19 @@
-import Monster from "../../model/creatures/monster";
 import Robot from "../../model/creatures/robot";
 import { Movements } from "../../model/properties/movement";
+import Creature from "../../model/creatures/creature";
 
 // adapt robot to monster
 
-class RobotToMonster extends Monster {
+class RobotToMonster extends Creature {
 
     private robot           : Robot;
-    protected run   		: Movements.canRun;
 
-    constructor(_name: string) {
+    constructor(_name: string, _robot: Robot) {
         super(_name);
+        this.robot = _robot;
     }
 
-    setRun() {
+    convertRideToRun() {
         this.run = new Movements.canRun(this.robot.getRide.getValue);
     }
 }

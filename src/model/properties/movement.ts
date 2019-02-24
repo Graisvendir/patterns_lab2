@@ -1,6 +1,5 @@
 import { Property } from './property';
 import { RUN, FLY, SWIM, RIDE } from '../../constants';
-import { showRun, showRide, showSwim, showFly } from '../../view/buttons';
 
 export namespace Movements {
 	/**
@@ -8,10 +7,11 @@ export namespace Movements {
 	 */
 
 	export abstract class Movement extends Property {
+
 		constructor(_label: string, _speed: number) {
 			super(_label, _speed);
 		}
-		
+
 		public output(): string {
 			if (this.value === 0) {
 				return '	i cant ' + this.label;
@@ -19,8 +19,6 @@ export namespace Movements {
 				return '	i can ' + this.label + ' with speed: ' + this.value;
 			}
 		};
-
-		public abstract show(): void;
 	}
 
 	/**
@@ -30,19 +28,11 @@ export namespace Movements {
 		constructor(_speed: number = 0) {
 			super(RUN, _speed);
 		}
-
-		show() {
-			showRun();
-		}
 	}
 
 	export class canFly extends Movement {
 		constructor(_speed: number = 0) {
 			super(FLY, _speed);
-		}
-
-		show() {
-			showFly();
 		}
 	}
 
@@ -50,19 +40,11 @@ export namespace Movements {
 		constructor(_speed: number = 0) {
 			super(SWIM, _speed);
 		}
-
-		show() {
-			showSwim();
-		}
 	}
 
 	export class canRide extends Movement {
 		constructor(_speed: number = 0) {
 			super(RIDE, _speed);
-		}
-
-		show() {
-			showRide();
 		}
 	}
 }

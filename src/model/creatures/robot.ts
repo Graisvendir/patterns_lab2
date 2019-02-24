@@ -3,30 +3,30 @@ import { Movements } from "../properties/movement";
 
 class Robot {
 
-    private _ride  	: Movements.canRide;
-    private _name	: string;
+    private ride  	: Movements.canRide;
+    private name	: string;
     private imgSrc  : string;
     
     constructor(
         _name: string
     ) {
-        this._name = _name;
+        this.name = _name;
     }
 
     get getName(): string {
-		return this._name;
+		return this.name;
 	}
 	
 	get getRide(): Movements.canRide {
-		return this._ride;
+		return this.ride;
     }
 
-    set ride(value: Movements.canRide) {
-        this._ride = value;
+    set setRide(_value: Movements.canRide) {
+        this.ride = _value;
     }
 
-    set name(value: string) {
-        this._name = value;
+    set setName(_value: string) {
+        this.name = _value;
     }
 
     get getImgSrc(): string {
