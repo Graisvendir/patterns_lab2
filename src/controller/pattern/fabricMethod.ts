@@ -11,24 +11,13 @@ export default class FabricMethod {
     private defaultRide = new Movements.canRide(10);
 
     constructor() {
-        this.defaultRun.addImgSrc("./img/run/1.png");
-        this.defaultRun.addImgSrc("./img/run/2.png");
-        this.defaultRun.addImgSrc("./img/run/3.png");
-        this.defaultRun.addImgSrc("./img/run/4.png");
-        this.defaultRun.addImgSrc("./img/run/5.png");
+        this.defaultRun.setImgSrc = "./img/run.gif";
 
-        this.defaultFly.addImgSrc("./img/fly/1.png");
-        this.defaultFly.addImgSrc("./img/fly/2.png");
-        this.defaultFly.addImgSrc("./img/fly/3.png");
-        this.defaultFly.addImgSrc("./img/fly/4.png");
+        this.defaultFly.setImgSrc = "./img/fly.gif";
 
-        this.defaultSwim.addImgSrc("./img/swim/1.png");
-        this.defaultSwim.addImgSrc("./img/swim/2.png");
-        this.defaultSwim.addImgSrc("./img/swim/3.png");
+        this.defaultSwim.setImgSrc = "./img/swim.gif";
 
-        this.defaultRide.addImgSrc("./img/ride/1.png");
-        this.defaultRide.addImgSrc("./img/ride/1.png");
-        this.defaultRide.addImgSrc("./img/ride/1.png");
+        this.defaultRide.setImgSrc = "./img/ride.gif";
 
     }
 
@@ -44,13 +33,13 @@ export default class FabricMethod {
     fabricDefaultRobot() : Robot {
         let defRobot = new Robot('defaultMonster');
         defRobot.setImgSrc = './img/robot.jpg';
-        defRobot.setRide = this.defaultRun;
+        defRobot.setRide = this.defaultRide;
         return defRobot;
     }
 
     fabricDefaultAdaptedRobot(_robot: Robot) : RobotToMonster {
         let defaultAdoptedRobot = new RobotToMonster('defaultAdoptedRobot', _robot);
-        defaultAdoptedRobot.setImgSrc = './img/adaptedRobot.png'
+        defaultAdoptedRobot.setImgSrc = './img/adaptedRobot.png';
         defaultAdoptedRobot.convertRideToRun();
         return defaultAdoptedRobot;
     }

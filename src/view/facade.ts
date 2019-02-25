@@ -35,17 +35,13 @@ class Facade {
         let place = <HTMLImageElement>document.getElementById('motion');
         switch (this.currentCreature) {
             case 1:
-                this.monsterTemplate.getRun.getImgSrc.forEach(element => {
-                    setTimeout(function () { place.src = element }, 500);
-                });
+                place.src = this.monsterTemplate.getRun.getImgSrc;
                 break;
             case 2:
                 alert(robotError);
                 break;
             case 3:
-                this.adaptedRobot.getRun.getImgSrc.forEach(element => {
-                    setTimeout(function () { place.src = element }, 500);
-                });
+                place.src = this.adaptedRobot.getRun.getImgSrc;
                 break;
             default:
                 break;
@@ -56,9 +52,7 @@ class Facade {
         let place = <HTMLImageElement>document.getElementById('motion');
         switch (this.currentCreature) {
             case 1:
-                this.monsterTemplate.getFly.getImgSrc.forEach(element => {
-                    setTimeout(function () { place.src = element }, 500);
-                });
+                place.src = this.monsterTemplate.getFly.getImgSrc;
                 break;
             case 2:
                 alert(robotError);
@@ -75,9 +69,7 @@ class Facade {
         let place = <HTMLImageElement>document.getElementById('motion');
         switch (this.currentCreature) {
             case 1:
-                this.monsterTemplate.getSwim.getImgSrc.forEach(element => {
-                    setTimeout(function () { place.src = element }, 500);
-                });
+                place.src = this.monsterTemplate.getSwim.getImgSrc;
                 break;
             case 2:
                 alert(robotError);
@@ -96,9 +88,7 @@ class Facade {
             case 1:
                 alert(monsterError);
             case 2:
-                this.robotTemplate.getRide.getImgSrc.forEach(element => {
-                    setTimeout(function () { place.src = element }, 500);
-                });
+                place.src = this.robotTemplate.getRide.getImgSrc;
                 break;
             case 3:
                 alert(adaptedRobotError);
@@ -159,8 +149,7 @@ class Facade {
     
     buttonRide(_event: Event) {
         this.showRide();
-    }
-    
+    }    
 }
 
 export default Facade;

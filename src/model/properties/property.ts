@@ -5,12 +5,12 @@
 export abstract class Property {
 	protected label: string;
 	protected value: number;
-	protected imgSrc: string[];
+	protected imgSrc: string;
 
 	constructor(_label: string, _value: number) {
 		this.label = _label;
 		this.value = _value;
-		this.imgSrc = [];
+		this.imgSrc = '';
 	}
 
 	get getLabel(): string {
@@ -29,15 +29,11 @@ export abstract class Property {
 		this.value = _value;
 	}
 
-	set setImgSrc(_value: string[]) {
+	set setImgSrc(_value: string) {
 		this.imgSrc = _value;
 	}
 
-	addImgSrc(_value: string) {
-		this.imgSrc.push(_value);
-	}
-
-	get getImgSrc(): string[] {
+	get getImgSrc(): string {
 		return this.imgSrc;
 	}
 
