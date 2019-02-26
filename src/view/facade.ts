@@ -3,12 +3,14 @@ import Robot from "../model/creatures/robot";
 import RobotToMonster from "../controller/pattern/adapter";
 import { robotError, adaptedRobotError, monsterError } from "../constants";
 import FabricMethod from "../controller/pattern/fabricMethod";
+import Resources from "../controller/pattern/resourcesFlywigth";
 
 class Facade {
     private currentCreature: number;
     private monsterTemplate: Monster;
     private robotTemplate: Robot;
     private adaptedRobot: RobotToMonster;
+    private res = Resources.getInstace();
 
     constructor() {
         let fabrick = new FabricMethod();
@@ -35,13 +37,13 @@ class Facade {
         let place = <HTMLImageElement>document.getElementById('motion');
         switch (this.currentCreature) {
             case 1:
-                place.src = this.monsterTemplate.getRun.getImgSrc;
+                place.src = this.res.getRunRes;
                 break;
             case 2:
                 alert(robotError);
                 break;
             case 3:
-                place.src = this.adaptedRobot.getRun.getImgSrc;
+                place.src = this.res.getRunRes;
                 break;
             default:
                 break;
@@ -52,7 +54,7 @@ class Facade {
         let place = <HTMLImageElement>document.getElementById('motion');
         switch (this.currentCreature) {
             case 1:
-                place.src = this.monsterTemplate.getFly.getImgSrc;
+                place.src = this.res.getFlyRes;
                 break;
             case 2:
                 alert(robotError);
@@ -69,7 +71,7 @@ class Facade {
         let place = <HTMLImageElement>document.getElementById('motion');
         switch (this.currentCreature) {
             case 1:
-                place.src = this.monsterTemplate.getSwim.getImgSrc;
+                place.src = this.res.getSwimRes;
                 break;
             case 2:
                 alert(robotError);
@@ -87,8 +89,9 @@ class Facade {
         switch (this.currentCreature) {
             case 1:
                 alert(monsterError);
+                break;
             case 2:
-                place.src = this.robotTemplate.getRide.getImgSrc;
+                place.src = this.res.getRideRes;
                 break;
             case 3:
                 alert(adaptedRobotError);
@@ -102,21 +105,21 @@ class Facade {
 
     showMonster() {
         let place = <HTMLImageElement>document.getElementById('persona');
-        place.src = this.monsterTemplate.getImgSrc;
+        place.src = this.res.getMonsterRes;
         this.currentCreature = 1;
         (<HTMLImageElement>document.getElementById('motion')).src = '';
     }
 
     showRobot() {
         let place = <HTMLImageElement>document.getElementById('persona');
-        place.src = this.robotTemplate.getImgSrc;
+        place.src = this.res.getRobotRes;
         this.currentCreature = 2;
         (<HTMLImageElement>document.getElementById('motion')).src = '';
     }
 
     showAdaptedRobot() {
         let place = <HTMLImageElement>document.getElementById('persona');
-        place.src = this.adaptedRobot.getImgSrc;
+        place.src = this.res.getAdaptedRobotRes;
         this.currentCreature = 3;
         (<HTMLImageElement>document.getElementById('motion')).src = '';
     }
