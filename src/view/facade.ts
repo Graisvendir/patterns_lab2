@@ -4,6 +4,7 @@ import RobotToMonster from "../controller/pattern/adapter";
 import { robotError, adaptedRobotError, monsterError } from "../constants";
 import FabricMethod from "../controller/pattern/fabricMethod";
 import Resources from "../controller/pattern/resourcesFlywigth";
+import RobotBuilder from "../controller/pattern/builder/RobotBuilder";
 
 class Facade {
     private currentCreature: number;
@@ -14,9 +15,11 @@ class Facade {
 
     constructor() {
         let fabrick = new FabricMethod();
+        let robotBuilder = new RobotBuilder();
         this.currentCreature = 0;
         this.monsterTemplate = fabrick.fabricDefaultMonster();
-        this.robotTemplate = fabrick.fabricDefaultRobot();
+        this.robotTemplate = robotBuilder.reset();
+        
         this.adaptedRobot = fabrick.fabricDefaultAdaptedRobot(this.robotTemplate);
 
         document.getElementById('monster').onclick = this.showMonster.bind(this);

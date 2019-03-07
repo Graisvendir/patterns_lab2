@@ -1,10 +1,10 @@
-import { Property } from './property';
-import { RUN, FLY, SWIM, RIDE } from '../../constants';
+import { FLY, RIDE, RUN, SWIM } from "../../constants";
+import { Property } from "./property";
 
 export namespace Movements {
-	/**
-	 * abstract class for movements, extends from Property
-	 */
+/**
+ * abstract class for movements, extends from Property
+ */
 
 	export abstract class Movement extends Property {
 
