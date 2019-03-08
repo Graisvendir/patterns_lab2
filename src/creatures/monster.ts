@@ -1,5 +1,5 @@
-import Creature from '../creatures/creature';
-import { facade } from '../../main';
+import Creature from './creature';
+import { facade } from '../main';
 
 class Monster extends Creature {
 

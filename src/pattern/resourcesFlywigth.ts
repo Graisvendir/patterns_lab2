@@ -8,7 +8,7 @@ export default class Resources {
     private flyRes: string;
     private rideRes: string;
 
-    private constructor() {
+    public constructor() {
         this.monsterRes = './img/monster.jpg';
         this.robotRes = './img/robot.jpg';
         this.adoptedRobotRes = './img/adaptedRobot.png';
@@ -18,35 +18,31 @@ export default class Resources {
         this.rideRes = './img/ride.gif';
     }
 
-    public static getInstace() {
-        return new Resources();
-    }
-
-    get getMonsterRes() {
+    public get getMonsterRes() {
         return this.monsterRes;
     }
 
-    get getRobotRes() {
+    public get getRobotRes() {
         return this.robotRes;
     }
 
-    get getAdaptedRobotRes() {
+    public get getAdaptedRobotRes() {
         return this.adoptedRobotRes;
     }
 
-    get getRunRes() {
+    public get getRunRes() {
         return this.runRes;
     }
 
-    get getSwimRes() {
+    public get getSwimRes() {
         return this.swimRes;
     }
 
-    get getFlyRes() {
+    public get getFlyRes() {
         return this.flyRes;
     }
 
-    get getRideRes() {
+    public get getRideRes() {
         return this.rideRes;
     }
 }

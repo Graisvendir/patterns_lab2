@@ -1,5 +1,5 @@
-import Robot from "../../../model/creatures/robot";
-import {Movements} from "../../../model/properties/movement";
+import Robot from "../../creatures/robot";
+import {Movements} from "../../creatures/properties/movement";
 import IBuilder from "./IBuilder";
 
 export default class RobotBuilder implements IBuilder {

@@ -1,4 +1,4 @@
-import { Movements } from "../properties/movement";
+import { Movements } from "./properties/movement";
 import canRun = Movements.canRun;
 import canFly = Movements.canFly;
 import canSwim = Movements.canSwim;

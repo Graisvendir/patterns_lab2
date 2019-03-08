@@ -1,6 +1,6 @@
-import Monster from "../../model/creatures/monster";
-import Robot from "../../model/creatures/robot";
-import { Movements } from "../../model/properties/movement";
+import Monster from "../creatures/monster";
+import Robot from "../creatures/robot";
+import { Movements } from "../creatures/properties/movement";
 import RobotToMonster from "./adapter";
 
 export default class FabricMethod {

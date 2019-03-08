@@ -1,6 +1,6 @@
-import Robot from "../../model/creatures/robot";
-import { Movements } from "../../model/properties/movement";
-import Creature from "../../model/creatures/creature";
+import Robot from "../creatures/robot";
+import { Movements } from "../creatures/properties/movement";
+import Creature from "../creatures/creature";
 
 // adapt robot to monster
 

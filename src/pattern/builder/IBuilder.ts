@@ -1,4 +1,4 @@
-import Robot from "../../../model/creatures/robot";
+import Robot from "../../creatures/robot";
 
 export default interface IBuilder {
     reset(): Robot;

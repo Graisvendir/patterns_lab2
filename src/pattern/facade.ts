@@ -1,17 +1,20 @@
-import Monster from "../model/creatures/monster";
-import Robot from "../model/creatures/robot";
-import RobotToMonster from "../controller/pattern/adapter";
+import Monster from "../creatures/monster";
+import Robot from "../creatures/robot";
+import RobotToMonster from "./adapter";
 import { robotError, adaptedRobotError, monsterError } from "../constants";
-import FabricMethod from "../controller/pattern/fabricMethod";
-import Resources from "../controller/pattern/resourcesFlywigth";
-import RobotBuilder from "../controller/pattern/builder/RobotBuilder";
+import FabricMethod from "./fabricMethod";
+import Resources from "./resourcesFlywigth";
+import RobotBuilder from "./builder/RobotBuilder";
 
+/**
+ * This class control all events of view
+ */
 class Facade {
     private currentCreature: number;
     private monsterTemplate: Monster;
     private robotTemplate: Robot;
     private adaptedRobot: RobotToMonster;
-    private res = Resources.getInstace();
+    private res = new Resources();
 
     constructor() {
         let fabrick = new FabricMethod();

@@ -1,4 +1,4 @@
-import { Movements } from "../properties/movement";
+import { Movements } from "./properties/movement";
 
 
 class Robot {
