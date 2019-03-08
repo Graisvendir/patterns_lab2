@@ -1,25 +1,30 @@
+import ISubscriber from "../pattern/observer/ISubscriber";
 import { Movements } from "./properties/movement";
 
+class Robot implements ISubscriber {
 
-class Robot {
+    private ride: Movements.canRide;
+    private name: string;
+    private imgSrc: string;
+    private commanderName: string;
 
-    private ride  	: Movements.canRide;
-    private name	: string;
-    private imgSrc  : string;
-    
     constructor(
-        _name: string
+        _name: string,
     ) {
         this.name = _name;
         this.imgSrc = '';
     }
 
     get getName(): string {
-		return this.name;
-	}
-	
-	get getRide(): Movements.canRide {
-		return this.ride;
+        return this.name;
+    }
+
+    get getRide(): Movements.canRide {
+        return this.ride;
+    }
+
+    get getImgSrc(): string {
+        return this.imgSrc;
     }
 
     set setRide(_value: Movements.canRide) {
@@ -30,14 +35,13 @@ class Robot {
         this.name = _value;
     }
 
-    get getImgSrc(): string {
-        return this.imgSrc;
-    }
-
     set setImgSrc(_value: string) {
         this.imgSrc = _value;
+    }
+
+    public update(_newCommanderName: string) {
+        this.commanderName = _newCommanderName;
     }
 }
 
 export default Robot;
-

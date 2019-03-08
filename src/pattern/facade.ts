@@ -1,164 +1,146 @@
+import { adaptedRobotError, monsterError, robotError } from "../constants";
+import Commander from "../creatures/commander";
 import Monster from "../creatures/monster";
 import Robot from "../creatures/robot";
 import RobotToMonster from "./adapter";
-import { robotError, adaptedRobotError, monsterError } from "../constants";
+import RobotBuilder from "./builder/RobotBuilder";
 import FabricMethod from "./fabricMethod";
 import Resources from "./resourcesFlywigth";
-import RobotBuilder from "./builder/RobotBuilder";
 
 /**
  * This class control all events of view
  */
 class Facade {
-    private currentCreature: number;
-    private monsterTemplate: Monster;
-    private robotTemplate: Robot;
-    private adaptedRobot: RobotToMonster;
-    private res = new Resources();
+	private currentCreature: number;
+	private monsterTemplate: Monster;
+	private robotTemplate: Robot;
+	private adaptedRobot: RobotToMonster;
+	private res = new Resources();
+	private commander: Commander;
 
-    constructor() {
-        let fabrick = new FabricMethod();
-        let robotBuilder = new RobotBuilder();
-        this.currentCreature = 0;
-        this.monsterTemplate = fabrick.fabricDefaultMonster();
-        this.robotTemplate = robotBuilder.reset();
-        
-        this.adaptedRobot = fabrick.fabricDefaultAdaptedRobot(this.robotTemplate);
+	constructor() {
+		const fabrick = new FabricMethod();
+		const robotBuilder = new RobotBuilder();
+		this.currentCreature = 0;
+		this.monsterTemplate = fabrick.fabricDefaultMonster();
+		this.robotTemplate = robotBuilder.reset();
+		this.commander = Commander.getInstance();
 
-        document.getElementById('monster').onclick = this.showMonster.bind(this);
-        document.getElementById('robot').onclick = this.showRobot.bind(this);
-        document.getElementById('adaptedRobot').onclick = this.showAdaptedRobot.bind(this);
-        document.getElementById('run').onclick = this.showRun.bind(this);
-        document.getElementById('fly').onclick = this.showFly.bind(this);
-        document.getElementById('swim').onclick = this.showSwim.bind(this);
-        document.getElementById('ride').onclick = this.showRide.bind(this);
-    }
+		this.adaptedRobot = fabrick.fabricDefaultAdaptedRobot(this.robotTemplate);
 
-    set setCurrentCreature(_index: number) {
-        this.currentCreature = _index;
-    }
+		document.getElementById('monster').onclick = this.showMonster.bind(this);
+		document.getElementById('robot').onclick = this.showRobot.bind(this);
+		document.getElementById('adaptedRobot').onclick = this.showAdaptedRobot.bind(this);
+		document.getElementById('run').onclick = this.showRun.bind(this);
+		document.getElementById('fly').onclick = this.showFly.bind(this);
+		document.getElementById('swim').onclick = this.showSwim.bind(this);
+		document.getElementById('ride').onclick = this.showRide.bind(this);
+		document.getElementById('setCommanderName').onclick = this.changeCommander.bind(this);
 
-    // -----------------------  SHOW MOVEMENTS ---------------------------//
-    showRun() {
-        let place = <HTMLImageElement>document.getElementById('motion');
-        switch (this.currentCreature) {
-            case 1:
-                place.src = this.res.getRunRes;
-                break;
-            case 2:
-                alert(robotError);
-                break;
-            case 3:
-                place.src = this.res.getRunRes;
-                break;
-            default:
-                break;
-        }
-    }
+	}
 
-    showFly() {
-        let place = <HTMLImageElement>document.getElementById('motion');
-        switch (this.currentCreature) {
-            case 1:
-                place.src = this.res.getFlyRes;
-                break;
-            case 2:
-                alert(robotError);
-                break;
-            case 3:
-                alert(adaptedRobotError);
-                break;
-            default:
-                break;
-        }
-    }
+	set setCurrentCreature(_index: number) {
+		this.currentCreature = _index;
+	}
 
-    showSwim() {
-        let place = <HTMLImageElement>document.getElementById('motion');
-        switch (this.currentCreature) {
-            case 1:
-                place.src = this.res.getSwimRes;
-                break;
-            case 2:
-                alert(robotError);
-                break;
-            case 3:
-                alert(adaptedRobotError);
-                break;
-            default:
-                break;
-        }
-    }
+	// -----------------------  SHOW MOVEMENTS ---------------------------//
+	public showRun() {
+		const place = document.getElementById('motion') as HTMLImageElement;
+		switch (this.currentCreature) {
+			case 1:
+				place.src = this.res.getRunRes;
+				break;
+			case 2:
+				alert(robotError);
+				break;
+			case 3:
+				place.src = this.res.getRunRes;
+				break;
+			default:
+				break;
+		}
+	}
 
-    showRide() {
-        let place = <HTMLImageElement>document.getElementById('motion');
-        switch (this.currentCreature) {
-            case 1:
-                alert(monsterError);
-                break;
-            case 2:
-                place.src = this.res.getRideRes;
-                break;
-            case 3:
-                alert(adaptedRobotError);
-                break;
-            default:
-                break;
-        }
-    }
+	public showFly() {
+		const place = document.getElementById('motion') as HTMLImageElement;
+		switch (this.currentCreature) {
+			case 1:
+				place.src = this.res.getFlyRes;
+				break;
+			case 2:
+				alert(robotError);
+				break;
+			case 3:
+				alert(adaptedRobotError);
+				break;
+			default:
+				break;
+		}
+	}
 
-    // ----------------------- SHOW CREACTURES ----------------------------//
+	public showSwim() {
+		const place = document.getElementById('motion') as HTMLImageElement;
+		switch (this.currentCreature) {
+			case 1:
+				place.src = this.res.getSwimRes;
+				break;
+			case 2:
+				alert(robotError);
+				break;
+			case 3:
+				alert(adaptedRobotError);
+				break;
+			default:
+				break;
+		}
+	}
 
-    showMonster() {
-        let place = <HTMLImageElement>document.getElementById('persona');
-        place.src = this.res.getMonsterRes;
-        this.currentCreature = 1;
-        (<HTMLImageElement>document.getElementById('motion')).src = '';
-    }
+	public showRide() {
+		const place = document.getElementById('motion') as HTMLImageElement;
+		switch (this.currentCreature) {
+			case 1:
+				alert(monsterError);
+				break;
+			case 2:
+				place.src = this.res.getRideRes;
+				break;
+			case 3:
+				alert(adaptedRobotError);
+				break;
+			default:
+				break;
+		}
+	}
 
-    showRobot() {
-        let place = <HTMLImageElement>document.getElementById('persona');
-        place.src = this.res.getRobotRes;
-        this.currentCreature = 2;
-        (<HTMLImageElement>document.getElementById('motion')).src = '';
-    }
+	// ----------------------- SHOW CREACTURES ----------------------------//
 
-    showAdaptedRobot() {
-        let place = <HTMLImageElement>document.getElementById('persona');
-        place.src = this.res.getAdaptedRobotRes;
-        this.currentCreature = 3;
-        (<HTMLImageElement>document.getElementById('motion')).src = '';
-    }
+	public showMonster() {
+		const place = document.getElementById('persona') as HTMLImageElement;
+		place.src = this.res.getMonsterRes;
+		this.currentCreature = 1;
+		(document.getElementById('motion') as HTMLImageElement).src = '';
+	}
 
+	public showRobot() {
+		const place = document.getElementById('persona') as HTMLImageElement;
+		place.src = this.res.getRobotRes;
+		this.currentCreature = 2;
+		(document.getElementById('motion') as HTMLImageElement).src = '';
+	}
 
-    //-------------------------- buttons of creatures -----------------------------//
-    buttonMonsterClick(_event: Event) {
-        this.showMonster();
-    }
+	public showAdaptedRobot() {
+		const place = document.getElementById('persona') as HTMLImageElement;
+		place.src = this.res.getAdaptedRobotRes;
+		this.currentCreature = 3;
+		(document.getElementById('motion') as HTMLImageElement).src = '';
+	}
 
-    buttonRobotClick(_event: Event) {
-        this.showRobot();
-    }
+	// -------------------------- change commander --------------------------------- //
 
-    buttonAdaptedRobotClick(_event: Event) {
-        this.showAdaptedRobot();
-    }
-
-    buttonRun(_event: Event) {
-        this.showRun();
-    }
-
-    buttonFly(_event: Event) {
-        this.showFly();
-    }
-    
-    buttonSwim(_event: Event) {
-        this.showSwim();
-    }
-    
-    buttonRide(_event: Event) {
-        this.showRide();
-    }    
+	public changeCommander() {
+		const place = document.getElementById('commanderName') as HTMLInputElement;
+		this.commander.setName = place.value;
+	}
 }
 
 export default Facade;

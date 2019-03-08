@@ -1,23 +1,25 @@
+import Publisher from "../pattern/observer/Publisher";
 
-// Класс наблюдателя, который при обновлении рассылает инфу подписчикам
-export default class Commander {
-    private subscribers: [];
-    private instance: Commander;
-    private name: string;
+/**
+ * Класс наблюдателя, который при обновлении рассылает инфу подписчикам
+ * в данном случае рассылает свое новое имя
+ */
+export default class Commander extends Publisher {
+
+    public static getInstance() {
+        if (Commander.instance == null) {
+            Commander.instance = new Commander();
+        }
+        return Commander.instance;
+    }
+    private static instance: Commander;
 
     private constructor(_name: string = "defaultCommander") {
-        this.name = _name;
-    }
-
-    public getInstance() {
-        if (this.instance == null) {
-            this.instance = new Commander()
-        }
-        return this.instance;
+        super(_name);
     }
 
     public scream() {
-        alert('Scream of ' + this.name);
+        alert('Scream of ' + this.getName);
     }
 
 }
