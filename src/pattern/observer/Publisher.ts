@@ -6,10 +6,11 @@ export default class Publisher {
 
     constructor(_name: string) {
         this.name = _name;
+        this.listeners = [];
     }
 
     public subscribe(_newSubscriber: ISubscriber) {
-        _newSubscriber.update(this.name);
+        _newSubscriber.update(this);
         this.listeners.push(_newSubscriber);
     }
 
@@ -19,7 +20,7 @@ export default class Publisher {
 
     public notify() {
         for (const elem of this.listeners) {
-            elem.update(this.name);
+            elem.update(this);
         }
     }
 

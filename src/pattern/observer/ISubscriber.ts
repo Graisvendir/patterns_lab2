@@ -1,4 +1,5 @@
+import Publisher from "./Publisher";
 
 export default interface ISubscriber {
-    update(_newCommanderName: string): void;
+    update(_newCommander: Publisher): void;
 }

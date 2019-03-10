@@ -1,11 +1,11 @@
-import Robot from "../../creatures/robot";
 import {Movements} from "../../creatures/properties/movement";
+import Robot from "../../creatures/robot";
 import IBuilder from "./IBuilder";
 
 export default class RobotBuilder implements IBuilder {
     private robot: Robot;
 
-    public reset() : Robot {
+    public reset(): Robot {
         this.robot = new Robot('classicRobot');
         return this.robot;
     }
@@ -15,7 +15,7 @@ export default class RobotBuilder implements IBuilder {
             this.reset();
         }
         this.robot.setRide = new Movements.canRide(10);
-        return undefined;
+        return this.robot;
     }
 
 }

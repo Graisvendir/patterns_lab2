@@ -1,6 +1,6 @@
 import Monster from "../creatures/monster";
-import Robot from "../creatures/robot";
 import { Movements } from "../creatures/properties/movement";
+import Robot from "../creatures/robot";
 import RobotToMonster from "./adapter";
 
 export default class FabricMethod {
@@ -9,8 +9,6 @@ export default class FabricMethod {
     private defaultFly = new Movements.canFly(10);
     private defaultSwim = new Movements.canSwim(10);
     private defaultRide = new Movements.canRide(10);
-
-    constructor() { }
 
     public fabricDefaultMonster(): Monster {
         const defMonster = new Monster("defaultMonster");

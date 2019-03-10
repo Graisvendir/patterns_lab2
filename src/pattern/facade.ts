@@ -21,10 +21,12 @@ class Facade {
 	constructor() {
 		const fabrick = new FabricMethod();
 		const robotBuilder = new RobotBuilder();
+		
 		this.currentCreature = 0;
 		this.monsterTemplate = fabrick.fabricDefaultMonster();
-		this.robotTemplate = robotBuilder.reset();
+		this.robotTemplate = robotBuilder.buildRide();
 		this.commander = Commander.getInstance();
+		this.commander.subscribe(this.robotTemplate);
 
 		this.adaptedRobot = fabrick.fabricDefaultAdaptedRobot(this.robotTemplate);
 
@@ -115,6 +117,8 @@ class Facade {
 	// ----------------------- SHOW CREACTURES ----------------------------//
 
 	public showMonster() {
+		const commander = document.getElementById('commander') as HTMLParagraphElement;
+		commander.innerText = '';
 		const place = document.getElementById('persona') as HTMLImageElement;
 		place.src = this.res.getMonsterRes;
 		this.currentCreature = 1;
@@ -123,12 +127,16 @@ class Facade {
 
 	public showRobot() {
 		const place = document.getElementById('persona') as HTMLImageElement;
+		const commander = document.getElementById('commander') as HTMLParagraphElement;
+		commander.innerHTML = 'Commander of robot: ' + this.robotTemplate.getCommander.getName;
 		place.src = this.res.getRobotRes;
 		this.currentCreature = 2;
 		(document.getElementById('motion') as HTMLImageElement).src = '';
 	}
 
 	public showAdaptedRobot() {
+		const commander = document.getElementById('commander') as HTMLParagraphElement;
+		commander.innerText = '';
 		const place = document.getElementById('persona') as HTMLImageElement;
 		place.src = this.res.getAdaptedRobotRes;
 		this.currentCreature = 3;
@@ -140,6 +148,8 @@ class Facade {
 	public changeCommander() {
 		const place = document.getElementById('commanderName') as HTMLInputElement;
 		this.commander.setName = place.value;
+		const name = document.getElementById('currentCommanderName') as HTMLParagraphElement;
+		name.innerText = place.value;
 	}
 }
 

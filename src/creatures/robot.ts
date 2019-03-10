@@ -1,4 +1,5 @@
 import ISubscriber from "../pattern/observer/ISubscriber";
+import Commander from "./commander";
 import { Movements } from "./properties/movement";
 
 class Robot implements ISubscriber {
@@ -6,7 +7,7 @@ class Robot implements ISubscriber {
     private ride: Movements.canRide;
     private name: string;
     private imgSrc: string;
-    private commanderName: string;
+    private commander: Commander;
 
     constructor(
         _name: string,
@@ -15,32 +16,40 @@ class Robot implements ISubscriber {
         this.imgSrc = '';
     }
 
-    get getName(): string {
+    public get getName(): string {
         return this.name;
     }
 
-    get getRide(): Movements.canRide {
+    public get getRide(): Movements.canRide {
         return this.ride;
     }
 
-    get getImgSrc(): string {
+    public get getImgSrc(): string {
         return this.imgSrc;
     }
+    
+    public get getCommander(): Commander {
+        return this.commander;
+    }
 
-    set setRide(_value: Movements.canRide) {
+    public set setRide(_value: Movements.canRide) {
         this.ride = _value;
     }
 
-    set setName(_value: string) {
+    public set setName(_value: string) {
         this.name = _value;
     }
 
-    set setImgSrc(_value: string) {
+    public set setImgSrc(_value: string) {
         this.imgSrc = _value;
     }
 
-    public update(_newCommanderName: string) {
-        this.commanderName = _newCommanderName;
+    /**
+     * Нужно для паттерна Наблюдатель, обновляет ссылку на командира
+     * @param _newCommander 
+     */
+    public update(_newCommander: Commander) {
+        this.commander = _newCommander;
     }
 }
 
