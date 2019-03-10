@@ -27,7 +27,7 @@ class Facade {
 		this.robotTemplate = robotBuilder.buildRide();
 		this.commander = Commander.getInstance();
 		this.commander.subscribe(this.robotTemplate);
-
+		this.commander.setNext(this.robotTemplate);
 		this.adaptedRobot = fabrick.fabricDefaultAdaptedRobot(this.robotTemplate);
 
 		document.getElementById('monster').onclick = this.showMonster.bind(this);
@@ -38,7 +38,7 @@ class Facade {
 		document.getElementById('swim').onclick = this.showSwim.bind(this);
 		document.getElementById('ride').onclick = this.showRide.bind(this);
 		document.getElementById('setCommanderName').onclick = this.changeCommander.bind(this);
-
+		document.getElementById('callCommand').onclick = this.commander.handle.bind(this.commander);
 	}
 
 	set setCurrentCreature(_index: number) {

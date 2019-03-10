@@ -1,6 +1,11 @@
+import IHandler from "../IHandler";
 import ISubscriber from "./ISubscriber";
 
-export default class Publisher {
+export default class Publisher implements IHandler {
+
+    // параметры next и handledText нужны для паттерна цепочка обязанностей
+    private next: IHandler;
+    private handledText: string;
     private name: string;
     private listeners: ISubscriber[];
 
@@ -31,5 +36,18 @@ export default class Publisher {
     set setName(_value: string) {
         this.name = _value;
         this.notify();
+    }
+
+    public setNext(_next: IHandler): void {
+        this.next = _next;
+    }
+
+    public handle(): void {
+        if (this.handledText === undefined) {
+            alert('cant handle, call next');
+            this.next.handle();
+        } else {
+            alert(this.handledText);
+        }
     }
 }

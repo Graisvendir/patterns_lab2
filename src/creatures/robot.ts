@@ -1,9 +1,13 @@
+import IHandler from "../pattern/IHandler";
 import ISubscriber from "../pattern/observer/ISubscriber";
 import Commander from "./commander";
 import { Movements } from "./properties/movement";
 
-class Robot implements ISubscriber {
+class Robot implements ISubscriber, IHandler {
 
+    // параметры next и handledText нужны для паттерна цепочка обязанностей
+    private next: IHandler;
+    private handledText: string = 'robot handle it!';
     private ride: Movements.canRide;
     private name: string;
     private imgSrc: string;
@@ -50,6 +54,15 @@ class Robot implements ISubscriber {
      */
     public update(_newCommander: Commander) {
         this.commander = _newCommander;
+    }
+
+    // надо для цепочки обязанностей
+    public setNext(_next: IHandler): void {
+        this.next = _next;
+    }
+
+    public handle(): void {
+        alert(this.handledText);
     }
 }
 

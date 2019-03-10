@@ -15,6 +15,7 @@
             "severity": "warning",
             "options": ["debug", "info", "log", "time", "timeEnd", "trace"]
         },
+        "member-access": false,
         "no-trailing-whitespace": false,
         "indent": false
     },
