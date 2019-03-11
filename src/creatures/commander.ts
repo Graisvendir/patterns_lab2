@@ -18,8 +18,4 @@ export default class Commander extends Publisher {
         super(_name);
     }
 
-    public scream() {
-        alert('Scream of ' + this.getName);
-    }
-
 }

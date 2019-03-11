@@ -19,16 +19,16 @@ class Facade {
 	private commander: Commander;
 
 	constructor() {
-		const fabrick = new FabricMethod();
+		const fabric = new FabricMethod();
 		const robotBuilder = new RobotBuilder();
 		
 		this.currentCreature = 0;
-		this.monsterTemplate = fabrick.fabricDefaultMonster();
+		this.monsterTemplate = fabric.fabricDefaultMonster();
 		this.robotTemplate = robotBuilder.buildRide();
 		this.commander = Commander.getInstance();
 		this.commander.subscribe(this.robotTemplate);
 		this.commander.setNext(this.robotTemplate);
-		this.adaptedRobot = fabrick.fabricDefaultAdaptedRobot(this.robotTemplate);
+		this.adaptedRobot = fabric.fabricDefaultAdaptedRobot(this.robotTemplate);
 
 		document.getElementById('monster').onclick = this.showMonster.bind(this);
 		document.getElementById('robot').onclick = this.showRobot.bind(this);

@@ -1,16 +1,11 @@
 import Creature from './creature';
-import { facade } from '../main';
 
 class Monster extends Creature {
 
 	constructor(
-		_name: string
-	){
+		_name: string,
+	) {
 		super(_name);
-	}
-
-    show() {
-        facade.showMonster();
 	}
 }
 

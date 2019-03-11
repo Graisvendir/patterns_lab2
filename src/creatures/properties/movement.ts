@@ -1,15 +1,33 @@
 import { FLY, RIDE, RUN, SWIM } from "../../constants";
-import { Property } from "./property";
 
 export namespace Movements {
 /**
  * abstract class for movements, extends from Property
  */
 
-	export abstract class Movement extends Property {
+	abstract class Movement {
+		protected label: string;
+		protected value: number;
 
-		constructor(_label: string, _speed: number) {
-			super(_label, _speed);
+		constructor(_label: string, _value: number) {
+			this.label = _label;
+			this.value = _value;
+		}
+
+		get getLabel(): string {
+			return this.label;
+		}
+
+		set setLabel(_label: string) {
+			this.label = _label;
+		}
+
+		get getValue(): number {
+			return this.value;
+		}
+
+		set setValue(_value: number) {
+			this.value = _value;
 		}
 
 		public output(): string {
@@ -24,25 +42,25 @@ export namespace Movements {
 	/**
 	 * move classes
 	 */
-	export class canRun extends Movement {
+	export class CanRun extends Movement {
 		constructor(_speed: number = 0) {
 			super(RUN, _speed);
 		}
 	}
 
-	export class canFly extends Movement {
+	export class CanFly extends Movement {
 		constructor(_speed: number = 0) {
 			super(FLY, _speed);
 		}
 	}
 
-	export class canSwim extends Movement {
+	export class CanSwim extends Movement {
 		constructor(_speed: number = 0) {
 			super(SWIM, _speed);
 		}
 	}
 
-	export class canRide extends Movement {
+	export class CanRide extends Movement {
 		constructor(_speed: number = 0) {
 			super(RIDE, _speed);
 		}

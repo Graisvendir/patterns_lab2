@@ -14,8 +14,7 @@ class RobotToMonster extends Creature {
     }
 
     public convertRideToRun() {
-        this.run = new Movements.canRun(this.robot.getRide.getValue);
-        this.run.setImgSrc = this.robot.getRide.getImgSrc;
+        this.run = new Movements.CanRun(this.robot.getRide.getValue);
     }
 }
 

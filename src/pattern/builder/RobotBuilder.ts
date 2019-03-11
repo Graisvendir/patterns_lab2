@@ -14,7 +14,7 @@ export default class RobotBuilder implements IBuilder {
         if (this.robot == null) {
             this.reset();
         }
-        this.robot.setRide = new Movements.canRide(10);
+        this.robot.setRide = new Movements.CanRide(10);
         return this.robot;
     }
 

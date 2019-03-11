@@ -8,44 +8,26 @@ class Robot implements ISubscriber, IHandler {
     // параметры next и handledText нужны для паттерна цепочка обязанностей
     private next: IHandler;
     private handledText: string = 'robot handle it!';
-    private ride: Movements.canRide;
+    private ride: Movements.CanRide;
     private name: string;
-    private imgSrc: string;
     private commander: Commander;
 
     constructor(
         _name: string,
     ) {
         this.name = _name;
-        this.imgSrc = '';
     }
 
-    public get getName(): string {
-        return this.name;
-    }
-
-    public get getRide(): Movements.canRide {
+    public get getRide(): Movements.CanRide {
         return this.ride;
-    }
-
-    public get getImgSrc(): string {
-        return this.imgSrc;
     }
     
     public get getCommander(): Commander {
         return this.commander;
     }
 
-    public set setRide(_value: Movements.canRide) {
+    public set setRide(_value: Movements.CanRide) {
         this.ride = _value;
-    }
-
-    public set setName(_value: string) {
-        this.name = _value;
-    }
-
-    public set setImgSrc(_value: string) {
-        this.imgSrc = _value;
     }
 
     /**

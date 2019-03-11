@@ -17,7 +17,9 @@
         },
         "member-access": false,
         "no-trailing-whitespace": false,
-        "indent": false
+        "indent": false,
+        "no-namespace": false,
+        "max-classes-per-file": false
     },
     "jsRules": {
         "max-line-length": {

@@ -5,10 +5,10 @@ import RobotToMonster from "./adapter";
 
 export default class FabricMethod {
 
-    private defaultRun = new Movements.canRun(10);
-    private defaultFly = new Movements.canFly(10);
-    private defaultSwim = new Movements.canSwim(10);
-    private defaultRide = new Movements.canRide(10);
+    private defaultRun = new Movements.CanRun(10);
+    private defaultFly = new Movements.CanFly(10);
+    private defaultSwim = new Movements.CanSwim(10);
+    private defaultRide = new Movements.CanRide(10);
 
     public fabricDefaultMonster(): Monster {
         const defMonster = new Monster("defaultMonster");

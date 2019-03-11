@@ -1,14 +1,13 @@
 import { Movements } from "./properties/movement";
-import canRun = Movements.canRun;
-import canFly = Movements.canFly;
-import canSwim = Movements.canSwim;
+import canRun = Movements.CanRun;
+import canFly = Movements.CanFly;
+import canSwim = Movements.CanSwim;
 
 abstract class Creature {
     protected run: canRun;
     protected fly: canFly;
     protected swim: canSwim;
     protected name: string;
-    protected imgSrc: string;
 
     constructor(
         name: string,
@@ -16,15 +15,15 @@ abstract class Creature {
         this.name = name;
     }
 
-    get getRun(): Movements.canRun {
+    get getRun(): canRun {
         return this.run;
     }
 
-    get getFly(): Movements.canFly {
+    get getFly(): canFly {
         return this.fly;
     }
 
-    get getSwim(): Movements.canSwim {
+    get getSwim(): canSwim {
         return this.swim;
     }
 
@@ -32,24 +31,16 @@ abstract class Creature {
         return this.name;
     }
 
-    get getImgSrc(): string {
-        return this.imgSrc;
-    }
-
-    set setRun(value: Movements.canRun) {
+    set setRun(value: canRun) {
         this.run = value;
     }
 
-    set setFly(value: Movements.canFly) {
+    set setFly(value: canFly) {
         this.fly = value;
     }
 
-    set setSwim(value: Movements.canSwim) {
+    set setSwim(value: canSwim) {
         this.swim = value;
-    }
-
-    set setImgSrc(value: string) {
-        this.imgSrc = value;
     }
 
 }
