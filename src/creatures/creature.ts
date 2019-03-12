@@ -43,6 +43,13 @@ abstract class Creature {
         this.swim = value;
     }
 
+    scream() {
+        console.log(this.name + '\n');
+        console.log(this.run.output() + '\n');
+        console.log(this.fly.output() + '\n');
+        console.log(this.swim.output() + '\n');
+    }
+
 }
 
 export default Creature;

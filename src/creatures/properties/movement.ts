@@ -31,11 +31,7 @@ export namespace Movements {
 		}
 
 		public output(): string {
-			if (this.value === 0) {
-				return '	i cant ' + this.label;
-			} else {
-				return '	i can ' + this.label + ' with speed: ' + this.value;
-			}
+			return '	i can ' + this.label + ' with speed: ' + this.value;
 		};
 	}
 
